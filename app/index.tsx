@@ -1,26 +1,54 @@
 import CustomButton from "@/components/Butons/CustomButton";
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { ActivityIndicator, SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import { useEffect } from "react";
 import { useRouter } from "expo-router";
 
 const App = () => {
   const router = useRouter();
+
+
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-      <View>
-        <CustomButton onPress={() => console.log("tap")} title="Get Started"/>
-      </View>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+
+        <View style={[
+          styles.container, {
+            flexDirection: 'column',
+          }]}>
+          <Image 
+            source={require('@/assets/images/fairway-logo.webp')}
+            style ={styles.headerImg}
+            />
+          <Text style={styles.loadingText}>Welcome to Fairway</Text>
+          <View>
+            <CustomButton 
+              onPress={() => router.push("/login")} // Navigate to login page
+              title="Get Started"
+              buttonStyle={{backgroundColor: "#C6ECAE"}}
+            />
+          </View>
+        </View>
+
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    flex: 1,
+    flex: 2,
     justifyContent: "center",
+    backgroundColor: "#D8A47F",
+    padding: 24,
   },
-})
+  loadingText: {
+    marginTop: 20,
+    fontSize: 16,
+    color: "#008854",
+  },
+  headerImg: {
+    width: 100,
+    height: 100,
+  }
+});
 
 export default App
