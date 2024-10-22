@@ -5,11 +5,15 @@ import { useRouter } from "expo-router";
 
 const App = () => {
   const router = useRouter();
+
+  const handlePress = () => {
+    router.push('/auth' as any);
+  }
   return (
     <View style={styles.container}>
       <Text>Hello World</Text>
       <View>
-        <CustomButton onPress={() => console.log("tap")} title="Get Started"/>
+        <CustomButton onPress={handlePress} title="Get Started"/>
       </View>
     </View>
   );
