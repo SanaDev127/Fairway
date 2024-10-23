@@ -48,18 +48,7 @@ const SignUp = () => {
              style={globalStyles.inputControl}
             />
             
-            <Text 
-            style = {globalStyles.inputLabel}>Confirm Password
-            </Text>
-
-            <TextInput
-              placeholder="***************"
-              placeholderTextColor="#6b7280"
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-              secureTextEntry
-              style={globalStyles.inputControl}
-            />
+            
           </View>
           <View style={globalStyles.formAction}> 
             <CustomButton
