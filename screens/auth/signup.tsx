@@ -1,14 +1,31 @@
-import { StyleSheet, Text, View, TextInput, SafeAreaView, Image } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View, TextInput, SafeAreaView, Image } from "react-native";
 import React, { useState } from "react";
 import { globalStyles } from "@/assets/style/signinstyling";
 import CustomButton from "@/components/Butons/CustomButton";
 import { useRouter } from "expo-router";
+import auth from "@react-native-firebase/auth";
+import {FirebaseError} from 'firebase/app'
+
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [loading, setLoading] = useState(false);
   
   const router = useRouter();
+
+  const signUp = async () => {
+    setLoading(true);
+    try{
+        await auth().createUserWithEmailAndPassword(email, password);
+        alert('Sign up successful');
+    } catch (e: any) {
+        const err = e as FirebaseError
+        alert( 'Sign up failed' + err.message)
+    } finally {
+        setLoading(false);
+    }
+  }
 
   return (
     <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}> 
@@ -33,8 +50,8 @@ const SignUp = () => {
              placeholder="example@gmail.com"
              placeholderTextColor="#6b7280"
              style={globalStyles.inputControl}
-             value={username}
-             onChangeText={setUsername}
+             value={email}
+             onChangeText={setEmail}
             />
             <Text 
             style = {globalStyles.inputLabel}>Password
@@ -51,9 +68,13 @@ const SignUp = () => {
             
           </View>
           <View style={globalStyles.formAction}> 
-            <CustomButton
+          {loading ? (
+              <ActivityIndicator size="large" style={{marginBottom: 10}} />)
+            : (
+              <>
+              <CustomButton
               title="Sign Up"
-              onPress={() => console.log("Signing up...")}
+              onPress={signUp}
               buttonStyle={{backgroundColor: "#C6ECAE"}}
             />
 
@@ -62,6 +83,9 @@ const SignUp = () => {
               onPress={() => router.push("/login")}
               buttonStyle={{backgroundColor: "#C6ECAE",marginTop: 10}}
             />
+               </>
+            )}
+            
           </View>
         </View>
         </View>
