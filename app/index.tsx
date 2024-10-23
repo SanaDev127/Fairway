@@ -1,5 +1,6 @@
-import { ActivityIndicator, Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
+import CustomButton from "@/components/Butons/CustomButton";
+import { ActivityIndicator, SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import { useEffect } from "react";
 import { useRouter } from "expo-router";
 import auth from "@react-native-firebase/auth";
 import {FirebaseError} from 'firebase/app'
@@ -8,86 +9,49 @@ import {FirebaseError} from 'firebase/app'
 const App = () => {
   const router = useRouter();
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
-
-  const signUp = async () => {
-    setLoading(true);
-    try{
-        await auth().createUserWithEmailAndPassword(email, password);
-        alert('Check your emails')
-    } catch (e: any) {
-        const err = e as FirebaseError
-        alert( 'Registration failed' + err.message)
-    } finally {
-        setLoading(false);
-    }
-  };
-
-  const signIn = async () => {
-    setLoading(true);
-    try{
-        await auth().signInWithEmailAndPassword(email, password);
-    } catch (e: any) {
-        const err = e as FirebaseError
-        alert( 'Sign in failed' + err.message)
-    } finally {
-        setLoading(false);
-    }
-  };
-
-
 
   return (
-    <View
-    style={styles.container}
-    >
-        <KeyboardAvoidingView behavior="padding">
-        <Text>Email</Text>
-            <TextInput
-            style={styles.input}
-            value={email}
-            onChangeText={setEmail}
-            autoCapitalize="none"
-            keyboardType="email-address"
-            placeholder="Email"
+    <SafeAreaView style={{flex: 1}}>
+
+        <View style={[
+          styles.container, {
+            flexDirection: 'column',
+          }]}>
+          <Image 
+            source={require('@/assets/images/fairway-logo.webp')}
+            style ={styles.headerImg}
             />
-            <Text>Password</Text>
-            <TextInput
-            style={styles.input}
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            placeholder="Password"
+          <Text style={styles.loadingText}>Welcome to Fairway</Text>
+          <View>
+            <CustomButton 
+              onPress={() => router.push("/login")} // Navigate to login page
+              title="Get Started"
+              buttonStyle={{backgroundColor: "#C6ECAE"}}
             />
-            {loading ? (
-                <ActivityIndicator size={'small'} style={{ marginTop: 28 }} />
-            ) : (
-                <>
-                <Button onPress={signIn} title="Sign In" />
-                <Button onPress={signUp} title="Sign Up" />
-                </>
-            )}
-        </KeyboardAvoidingView>
-    </View>
+          </View>
+        </View>
+
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 20,
-        flex: 1,
-        justifyContent: "center",
-    },
-    input: {
-        marginVertical: 4,
-        height: 50,
-        borderWidth: 1,
-        borderRadius: 4,
-        padding: 10,
-        backgroundColor: '#fff'
-    }
-})
+  container: {
+    alignItems: "center",
+    flex: 2,
+    justifyContent: "center",
+    backgroundColor: "#D8A47F",
+    padding: 24,
+  },
+  loadingText: {
+    marginTop: 20,
+    fontSize: 16,
+    color: "#008854",
+  },
+  headerImg: {
+    width: 100,
+    height: 100,
+  }
+});
 
 export default App
