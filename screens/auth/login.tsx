@@ -10,20 +10,20 @@ const Login = () => {
   const router = useRouter();
 
   return (
-  <SafeAreaView style={{flex : 1, backgroundColor:"#1D963F"}}>
+  <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}>
     <View style={globalStyles.container}>
       <View style={globalStyles.border}>
         <View style={globalStyles.header}>
           <Image 
-                source={require('@/assets/images/fairway-logo.webp')}
-                style ={globalStyles.headerImg}
-                />
-                <Text 
-                style={globalStyles.title}>Login for your account
-                </Text>
-                <Text
-                style={globalStyles.subtitle}>Get access your profile and enter the world of golfing with Fairway.
-                </Text>
+          source={require('@/assets/images/fairway-logo.webp')}
+          style ={globalStyles.headerImg}
+          />
+          <Text 
+          style={globalStyles.title}>Login for your account
+          </Text>
+          <Text
+          style={globalStyles.subtitle}>Get access your profile and enter the world of golfing with Fairway.
+          </Text>
         </View>
         <View style ={globalStyles.form}>
           <View style = {globalStyles.input}>

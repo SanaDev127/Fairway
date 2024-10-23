@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, TextInput, SafeAreaView, Image } from "react-native";
 import React, { useState } from "react";
 import { globalStyles } from "@/assets/style/signinstyling";
 import CustomButton from "@/components/Butons/CustomButton";
@@ -11,10 +11,14 @@ const SignUp = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={{flex : 1, backgroundColor:"#1D963F"}}> 
+    <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}> 
       <View style={globalStyles.container}>
         <View style = {globalStyles.border}>
         <View style={globalStyles.header}>
+          <Image 
+          source={require('@/assets/images/profile-icon.png')}
+          style ={globalStyles.headerImg}
+          />
           <Text style={globalStyles.title}>Sign Up</Text>
         </View>
         <View style ={globalStyles.form}>
@@ -77,27 +81,5 @@ const SignUp = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 24,
-  },
-  input: {
-    width: "80%",
-    padding: 12,
-    marginBottom: 16,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 8,
-  },
-});
 
 export default SignUp;

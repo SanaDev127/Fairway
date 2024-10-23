@@ -7,7 +7,7 @@ export const globalStyles = StyleSheet.create({
   },
   border: {
     marginVertical: 90,
-    backgroundColor: "#F2F2F2",
+    backgroundColor: "#e8ecf4",
     borderRadius: 10,
   },
   header: {
