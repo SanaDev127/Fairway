@@ -22,8 +22,8 @@ const Login = () => {
         alert( 'Sign in failed' + err.message)
     } finally {
         setLoading(false);
-    }
-  };
+    }
+  };
 
   return (
   <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}>
