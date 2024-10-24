@@ -3,10 +3,13 @@ import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native';
 import { useRouter } from "expo-router";
 import { globalStyles } from '@/assets/style/signinstyling';
 import CustomButton from '@/components/Butons/CustomButton';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import auth from "@react-native-firebase/auth";
 
 const Home = () => {
  const router = useRouter();
+
  //const user = auth().currentUser
     return(
         <SafeAreaView style={{flex: 1, backgroundColor:"#e8ecf4"}}>
@@ -15,7 +18,7 @@ const Home = () => {
                 <CustomButton
                      onPress={()=> console.log("Pressed")}
                      title='Club'
-                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
+                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
 
                      
                     
@@ -33,12 +36,21 @@ const Home = () => {
                      onPress={() => auth().signOut()}
                      title='Logout'
                      buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
+
+                <CustomButton
+                     onPress={() => router.push("../profile/profileHome")}
+                     title='Profile'
+                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
+
+                     
                     
                 <View>
                     
                 </View>
             </View>
+            
         </SafeAreaView>
+        
     );
 };
 
