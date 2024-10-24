@@ -25,6 +25,14 @@ const Login = () => {
     }
   };
 
+  const checkFields = async () => {
+    if (!email || !password) {
+      alert("Please fill in all fields");
+    } else {
+      signIn();
+    }
+  }
+
   return (
   <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}>
     <View style={globalStyles.container}>
@@ -75,7 +83,7 @@ const Login = () => {
               <>
               <CustomButton
             title="Login"
-            onPress={signIn}
+            onPress={checkFields}
             buttonStyle={{backgroundColor: "#C6ECAE"}}
             />
 
