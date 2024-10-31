@@ -54,6 +54,7 @@ export default function RootLayout() {
       <Stack.Screen name="home" options={{headerShown: false}} />
       <Stack.Screen name="auth" options={{headerShown: false}} />
       <Stack.Screen name="profile" options={{headerShown: false}} />
+      <Stack.Screen name="game/startGame" options={{headerShown: false}} />
     </Stack>
   );
 }

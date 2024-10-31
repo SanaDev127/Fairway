@@ -42,6 +42,11 @@ const Home = () => {
                      title='Profile'
                      buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
 
+                <CustomButton
+                     onPress={() => router.push("../game/startGame")}
+                     title='Start Game'
+                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
+
                      
                     
                 <View>
