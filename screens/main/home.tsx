@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { useRouter } from "expo-router";
 import { globalStyles } from '@/assets/style/signinstyling';
 import CustomButton from '@/components/Butons/CustomButton';
@@ -17,7 +17,9 @@ const data =[
 
 const Home = () => {
  const router = useRouter();
- const [value, setValue] = useState('null');
+ const [value, setValue] = useState('');
+ const [value2, setValue2] = useState('');
+ const [value3, setValue3] = useState('');
 
 
  //const user = auth().currentUser
@@ -39,76 +41,104 @@ const Home = () => {
                     <Text style={styles.text}>This is the Home Screen</Text>
                 </View>
                 
-                <Text 
-                style={styles.label}>Continue Playing
-                </Text> 
-                
-                <View style={styles.dropdownContainer}>
+                <View style={styles.container}>
+                    <Text 
+                        style={styles.label}>Continue Playing
+                    </Text> 
+                    
+                    <View style={styles.dropdownContainer}>
+                        <Dropdown
+                            data={data}
+                            labelField={"label"}
+                            valueField={"value"}
+                            placeholder="Select Game"
+                            value={value}
+                            onChange={item => {
+                                setValue(item.value);
+                                console.log(item.value);
+                            }}
+                            style={styles.dropdown}
+                        />
+                        
+
+                        <TouchableOpacity onPress={() => console.log("Selected game: " + value)}>
+                            <Text style ={styles.label}>Select</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={styles.container}>
+                    <Text 
+                    style={styles.label}>Recent Played
+                    </Text> 
                     <Dropdown
                         data={data}
                         labelField={"label"}
                         valueField={"value"}
                         placeholder="Select Game"
-                        value={value}
+                        value={value2}
+                        search
+                        searchPlaceholder="Search..."
+                        maxHeight={300}
                         onChange={item => {
-                            setValue(item.value);
+                            setValue2(item.value);
                             console.log(item.value);
                         }}
-                        style={styles.dropdown}
-                    />
-                    
-                    <CustomButton
-                        onPress={() => console.log("Selected game: " + value)}
-                        title="Select"
-                        buttonStyle={{ backgroundColor: "#C6ECAE", marginLeft: 10 }}
+                        style={styles.dropdown2}
                     />
                 </View>
-
-                <Text 
-                style={styles.label}>Recent Played
-                </Text> 
-                <Dropdown
-                    data={data}
-                    labelField={"label"}
-                    valueField={"value"}
-                    placeholder="Select Game"
-                    value={value}
-                    search
-                    onChange={item => {
-                        setValue(item.value);
-                        console.log(item.value);
-                    }}
-                style={styles.dropdown2}
-                />
-
-                <CustomButton
-                     onPress={() => auth().signOut()}
-                     title='Logout'
-                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
-
-                <CustomButton
-                     onPress={() => router.push("../profile/profileHome")}
-                     title='Profile'
-                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
-
-                <CustomButton
-                     onPress={() => router.push("../game/startGame")}
-                     title='Start Game'
-                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
-
-                <CustomButton
-                     onPress={() => router.push("../game/Games")}
-                     title='Games'
-                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
-
-            </View>
-            
+                <View style={styles.container}>
+                    <Text 
+                        style={styles.label}>Invites
+                    </Text> 
+                    <Dropdown
+                        data={data}
+                        labelField={"label"}
+                        valueField={"value"}
+                        placeholder="List of unopened invites"
+                        value={value3}
+                        search
+                        searchPlaceholder="Search..."
+                        maxHeight={200}
+                        onChange={item => {
+                            setValue3(item.value);
+                            console.log(item.value);
+                        }}
+                        style={styles.dropdown2}
+                    />
+                </View>
+                <View style={styles.bottomButtonsContainer}>
+                    <CustomButton
+                        onPress={() => auth().signOut()}
+                        title='Logout'
+                        buttonStyle={styles.bottomButton}
+                    />
+                    <CustomButton
+                        onPress={() => router.push("../profile/profileHome")}
+                        title='Profile'
+                        buttonStyle={styles.bottomButton}
+                    />
+                    <CustomButton
+                        onPress={() => router.push("../game/startGame")}
+                        title='Start Game'
+                        buttonStyle={styles.bottomButton}
+                    />
+                    <CustomButton
+                        onPress={() => router.push("../game/Games")}
+                        title='Games'
+                        buttonStyle={styles.bottomButton}
+                    />
+                </View>
+            </View>    
         </SafeAreaView>
         
     );
 };
 
 const styles = StyleSheet.create({
+    container:{
+        marginTop: 20,
+    },
     dropdownContainer: {
         flexDirection: "row",
         alignItems: "center",
@@ -124,7 +154,7 @@ const styles = StyleSheet.create({
     dropdown: {
         margin: 16,
         height: 50,
-        width: 250,
+        width: 290,
         backgroundColor: 'white',
         borderRadius: 12,
         padding: 12,
@@ -160,7 +190,20 @@ const styles = StyleSheet.create({
     label:{
         fontSize: 17,
         color: "#222",
-    }
+    },
+    bottomButtonsContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        position: "absolute",
+        bottom: 10,
+        width: 390,
+        paddingHorizontal: 10,
+    },
+    bottomButton: {
+        backgroundColor: "#C6ECAE",
+        flex: 1,
+        marginHorizontal: 1,
+    },
 })
 
 export default Home;
