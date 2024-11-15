@@ -21,7 +21,8 @@ const Game = () => {
     const [courseFilter, setcourseFilter] = useState('');
     const [ParticipantsFilter, setParticipantsFilter] = useState('');
 
-    const [value, setValue] = useState('');
+    const [courseValue, setCourseValue] = useState('');
+    const [playerValue, setPlayerValue] = useState('');
     const [open, setOpen] = useState(false); //open and close modal
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
@@ -35,22 +36,22 @@ const Game = () => {
         setOpen(!open);
     }
 
-    // const formatDate = (date) => {
-    //     return date ? date.toLocaleDateString("en-GB", {
-    //         day: '2-digit', 
-    //         month: '2-digit', 
-    //         year: 'numeric'
-    //     }) : "None";
-    // };
+    const formatDate = (date) => {
+        return date ? date.toLocaleDateString("en-GB", {
+            day: '2-digit', 
+            month: '2-digit', 
+            year: 'numeric'
+        }) : "None";
+    };
 
-    // const onDateChange = (date, type) => {
-    //     if (type === "END_DATE") {
-    //         setSelectedEndDate(date);
-    //     } else {
-    //         setSelectedStartDate(date);
-    //         setSelectedEndDate(null); // Clear end date if a new start date is chosen
-    //     }
-    // };
+    const onDateChange = (date, type) => {
+        if (type === "END_DATE") {
+            setSelectedEndDate(date);
+        } else {
+            setSelectedStartDate(date);
+            setSelectedEndDate(null); // Clear end date if a new start date is chosen
+        }
+    };
 
     return (
         <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}>
@@ -66,7 +67,7 @@ const Game = () => {
                             <TextInput 
                                 editable={false}
                                 style={styles.textBox}
-                                //value ={`${formatDate(selectedStartDate)} to ${formatDate(selectedEndDate)}`}
+                                value ={`${formatDate(selectedStartDate)} to ${formatDate(selectedEndDate)}`}
                                 />
 
                         </View>
@@ -88,7 +89,7 @@ const Game = () => {
                                         todayBackgroundColor="#f2e6ff"
                                         selectedDayColor="#7300e6"
                                         selectedDayTextColor="#FFFFFF"
-                                        //onDateChange={onDateChange}
+                                        onDateChange={onDateChange}
                                     />
                                     
                                     <TouchableOpacity onPress={CloseDatePicker}>
@@ -108,9 +109,9 @@ const Game = () => {
                             labelField={"label"}
                             valueField={"value"}
                             placeholder="Select Course"
-                            value={value}
+                            value={courseValue}
                             onChange={item => {
-                                setValue(item.value);
+                                setCourseValue(item.value);
                                 console.log(item.value);
                             }}
                             style={styles.dropdown}
@@ -124,9 +125,9 @@ const Game = () => {
                             labelField={"label"}
                             valueField={"value"}
                             placeholder="Select Player"
-                            value={value}
+                            value={playerValue}
                             onChange={item => {
-                                setValue(item.value);
+                                setPlayerValue(item.value);
                                 console.log(item.value);
                             }}
                             style={styles.dropdown}
@@ -134,11 +135,11 @@ const Game = () => {
                     </View>
                     <View style={styles.btnContainer}>
                         <CustomButton
-                            onPress={()=> console.log("Pressed")}
+                            onPress={()=> console.log("Search Button Pressed")}
                             title=' Search'
                             buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/> 
                         <CustomButton
-                            onPress={()=> console.log("Pressed")}
+                            onPress={()=> console.log("Clear Button Pressed")}
                             title='Clear'
                             buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
                     </View>
