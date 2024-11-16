@@ -17,6 +17,12 @@ const data =[
 
 
 const Game = () => {
+
+    // Code inspired by the following YouTube video:
+    // Title:React Native Tutorial #7 - Flat List Component
+    // URL:https://www.youtube.com/watch?v=iMCM1NceGJY
+    // Channel: Net Ninja
+    // Published on: 2 December 2019
      const  [searchData, setSearchData] = useState([
         { name: 'Game 1', id: '1', course: 'Course A', date: '2024-10-17', score: '85' },
         { name: 'Game 2', id: '2', course: 'Course B', date: '2024-10-18', score: '90' },
@@ -39,6 +45,11 @@ const Game = () => {
 
     const minDate = new Date();
 
+    // Code inspired by the following YouTube video:
+    // Title:React Native | How To Add A Date Picker
+    // URL:https://www.youtube.com/watch?v=22txA5uRhHo
+    // Channel: Declan Miller
+    // Published on: 7 February 2023
     function OpenDatepicker (){
         setOpen(!open);
     }
