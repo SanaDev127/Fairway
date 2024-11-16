@@ -30,9 +30,9 @@ export type League = {
 
 export type GetAllClubLeaguesInput = {clubId: string}
 
-export type GenerateLeagueTableInput = {leagueId: string, startDate?: string, endDate?: string, gameThreshold?: number}
+export type GetAllLeagueGamesInput = {leagueId: string}
 
-export type GetAllLeaguesGamesInput = {leagueId: string}
+export type GenerateLeagueTableInput = {leagueId: string, startDate?: string, endDate?: string, gameThreshold?: number}
 
 // Maybe not necessary for mobile app
 

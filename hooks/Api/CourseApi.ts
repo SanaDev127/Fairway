@@ -1,9 +1,6 @@
+import { useGetCourse, useGetAllCourses, useCreateCourse } from "../Requests/CourseRequests"
 
-import { useGetCourse, useGetAllCourses, useCreateCourse } from "./Requests/CourseRequests"
-
-
-
-
+export const useGameApi = () => {};
 
 // For ongoing games. Ongoing game doesn't sound as good as active game
 export const useActiveGameApi = () => {};
