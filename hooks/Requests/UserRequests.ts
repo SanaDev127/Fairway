@@ -9,10 +9,11 @@ import {
     User
 } from "@/hooks/Types/UserTypes";
 import {GameInvite} from "@/hooks/Types/GameTypes";
+import {Urls} from "@/constants/Urls"
 
 export const useCreateUser = () => {
     const {commonFetch, isLoading, data} = useFetch<User>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/CreateUser",
+        url: `${Urls.apiUrl}/api/User/CreateUser`,
         method: "POST",
     });
     const createUser = (input: CreateUserInput) => commonFetch({input})
@@ -21,7 +22,7 @@ export const useCreateUser = () => {
 
 export const useGetUser = () => {
     const {commonFetch, isLoading, data} = useFetch<User>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/GetUser",
+        url: `${Urls.apiUrl}/api/User/GetUser`,
         method: "GET",
     });
     const getUser = (input: GetUserInput) => commonFetch({input})
@@ -30,7 +31,7 @@ export const useGetUser = () => {
 
 export const useGetAllGameInvites = () => {
     const {commonFetch, isLoading, data} = useFetch<GameInvite[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/GetAllGameInvites",
+        url: `${Urls.apiUrl}/api/User/GetAllGameInvites`,
         method: "GET",
     });
     const getAllGameInvites = (input: GetAllGameInvitesInput) => commonFetch({input})
@@ -39,7 +40,7 @@ export const useGetAllGameInvites = () => {
 
 export const useCreateBuddyInvite = () => {
     const {commonFetch, isLoading, data} = useFetch<BuddyInvite>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/CreateBuddyInvite",
+        url: `${Urls.apiUrl}/api/User/CreateBuddyInvite`,
         method: "POST",
     });
     const createBuddyInvite = (input: CreateBuddyInviteInput) => commonFetch({input})
@@ -48,7 +49,7 @@ export const useCreateBuddyInvite = () => {
 
 export const useAcceptBuddyInvite = () => {
     const {commonFetch, isLoading, data} = useFetch<BuddyInvite>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/AcceptBuddyInvite",
+        url: `${Urls.apiUrl}/api/User/AcceptBuddyInvite`,
         method: "POST",
     });
     const acceptBuddyInvite = (input: AcceptBuddyInviteInput) => commonFetch({input})
@@ -57,7 +58,7 @@ export const useAcceptBuddyInvite = () => {
 
 export const useAcceptFriendshipRequest = () => {
     const {commonFetch, isLoading, data} = useFetch<FriendshipRequest>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/AcceptFriendshipRequest",
+        url: `${Urls.apiUrl}/api/User/AcceptFriendshipRequest`,
         method: "POST",
     });
     const acceptFriendshipRequest = (input: AcceptFriendshipRequestInput) => commonFetch({input})
@@ -66,7 +67,7 @@ export const useAcceptFriendshipRequest = () => {
 
 export const useGetAllBuddies = () => {
     const {commonFetch, isLoading, data} = useFetch<User[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/GetAllBuddies",
+        url: `${Urls.apiUrl}/api/User/GetAllBuddies`,
         method: "GET",
     });
     const getAllBuddies = (input: GetAllBuddiesInput) => commonFetch({input})
@@ -75,7 +76,7 @@ export const useGetAllBuddies = () => {
 
 export const useGetUserByFirebaseId = () => {
     const {commonFetch, isLoading, data} = useFetch<User>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/GetUserByFirebaseId",
+        url: `${Urls.apiUrl}/api/User/GetUserByFirebaseId`,
         method: "GET",
     });
     const getUserByFirebaseId = (input: GetUserByFirebaseIdInput) => commonFetch({input})
@@ -84,7 +85,7 @@ export const useGetUserByFirebaseId = () => {
 
 export const useGetAllUserFriendshipRequests = () => {
     const {commonFetch, isLoading, data} = useFetch<FriendshipRequest[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/User/GetAllUserFriendshipRequests",
+        url: `${Urls.apiUrl}/User/GetAllUserFriendshipRequests`,
         method: "GET",
     });
     const getAllUserFriendshipRequests = (input: GetAllUserFriendshipRequestsInput) => commonFetch({input})

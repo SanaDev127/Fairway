@@ -1,10 +1,11 @@
 import {Course, GetCourseInput} from "@/hooks/Types/CourseTypes";
 import { useFetch } from "../useFetch";
+import {Urls} from "@/constants/Urls"
 
 export const useGetAllCourses = () => {
     // Must change url when api is hosted
     const {commonFetch, isLoading, data } = useFetch<Course[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Course/GetAllCourses",
+        url: `${Urls.apiUrl}/api/Course/GetAllCourses`,
         method: "GET",
     });
 
@@ -16,7 +17,7 @@ export const useGetAllCourses = () => {
 export const useGetCourse = () => {
    
     const { commonFetch, isLoading, data } = useFetch<Course>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Course/GetCourse",
+        url: `${Urls.apiUrl}/api/Course/GetCourse`,
         method: "GET",
     });
 
@@ -29,7 +30,7 @@ export const useGetCourse = () => {
 // Don't have this endpoint yet
 export const useCreateCourse =() => {
      const { commonFetch, isLoading, data } = useFetch<Course>({
-        url: "https://localhost:7047/api/Course/CreateCourse",
+        url: `${Urls.apiUrl}/Course/CreateCourse`,
         method: "POST",
      });
 

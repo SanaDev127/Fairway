@@ -14,9 +14,9 @@ export type Game = {
 }
 
 export type GameScorecard = {
-    pars?: number[],
-    playerScorecards?: PlayerScorecard[],
-    players?: User[],
+    pars: number[],
+    playerScorecards: PlayerScorecard[],
+    players: User[],
     active: boolean,
 }
 
@@ -29,10 +29,10 @@ export type GameResult = {
 }
 
 export type PlayerScorecard = {
-    playerId?: string;
-    playerName?: string;
-    strokes?: number[];
-    points?: number[];
+    playerId: string;
+    playerName: string;
+    strokes: number[];
+    points: number[];
 }
 
 export type DetailScorecard = {
@@ -49,7 +49,7 @@ export type ScorecardRecord = {
 }
 
 export type GameResultRecord = {
-    playerId?: string,
+    playerId: string,
     playerName?: string,
     strokes: number,
     points: number,
@@ -58,32 +58,32 @@ export type GameResultRecord = {
 }
 
 export type OngoingGame = {
-    id?: string,
-    organiser?: string,
+    id: string,
+    organiser: string,
     startTime: string,
-    invitees?: string[],
-    course?: Course,
-    holes?: Hole[],
-    players?: User[],
-    playerHandicaps?: number[],
-    scorecard?: GameScorecard
+    invitees: string[],
+    course: Course,
+    holes: Hole[],
+    players: User[],
+    playerHandicaps: number[],
+    scorecard: GameScorecard
 }
 
 export type UpcomingGame = {
-    id?: string,
-    course?: string,
-    organiser?: string,
+    id: string,
+    course: string,
+    organiser: string,
     availableSlots: number,
-    date?: string,
-    players?: string[],
+    date: string,
+    players: string[],
     hasSpace: boolean,
-    club?: string
+    club: string
 }
 
 export type GameInvite = {
-    id?: string,
-    gameID?: string,
-    recipientID?: string,
+    id: string,
+    gameID: string,
+    recipientID: string,
     accepted: boolean,
     //dateSent: Date
 }
@@ -107,3 +107,5 @@ export type GetOngoingGameScorecardInput = {gameId: string}
 export type UpdateOngoingGameInput = {game: OngoingGame}
 
 export type SaveGameInput = {gameId: string}
+
+export type UpdateInstruction = {player: string, hole: number, score: number}

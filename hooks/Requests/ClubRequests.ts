@@ -8,10 +8,11 @@ import {
 import { useFetch } from "@/hooks/useFetch";
 import {Game, UpcomingGame} from "@/hooks/Types/GameTypes";
 import {User} from "@/hooks/Types/UserTypes";
+import {Urls} from "@/constants/Urls";
 
 export const useCreateClub = () => {
     const {commonFetch, isLoading, data} = useFetch<Club>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/CreateClub",
+        url: `${Urls.apiUrl}/api/Club/CreateClub`,
         method: "POST",
     });
     const createClub = (input: CreateClubInput) => commonFetch({input})
@@ -20,7 +21,7 @@ export const useCreateClub = () => {
 
 export const useGetClubsRecentGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/GetClubsRecentGames",
+        url: `${Urls.apiUrl}/api/Club/GetClubsRecentGames`,
         method: "GET",
     });
     const getClubsRecentGames = (input: GetClubsRecentGamesInput) => commonFetch({input})
@@ -29,7 +30,7 @@ export const useGetClubsRecentGames = () => {
 
 export const useGetAllClubGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/GetAllClubGames",
+        url: `${Urls.apiUrl}/api/Club/GetAllClubGames`,
         method: "GET",
     });
     const getAllClubGames = (input: GetAllClubsGamesInput) => commonFetch({input})
@@ -38,7 +39,7 @@ export const useGetAllClubGames = () => {
 
 export const useGetClubUpcomingGames = () => {
     const {commonFetch, isLoading, data} = useFetch<UpcomingGame[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/GetClubUpcomingGames",
+        url: `${Urls.apiUrl}/api/Club/GetClubUpcomingGames`,
         method: "GET",
     });
     const getClubUpcomingGames = (input: GetClubUpcomingGamesInput) => commonFetch({input})
@@ -47,7 +48,7 @@ export const useGetClubUpcomingGames = () => {
 
 export const useGetUsersUpcomingGames = () => {
     const {commonFetch, isLoading, data} = useFetch<UpcomingGame[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/GetUsersUpcomingGames",
+        url: `${Urls.apiUrl}/api/Club/GetUsersUpcomingGames`,
         method: "GET",
     });
     const getUsersUpcomingGames = (input: GetUsersUpcomingGamesInput) => commonFetch({input})
@@ -56,7 +57,7 @@ export const useGetUsersUpcomingGames = () => {
 
 export const useCreateUpcomingGame = () => {
     const {commonFetch, isLoading, data} = useFetch<UpcomingGame>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/CreateUpcomingGame",
+        url: `${Urls.apiUrl}/api/Club/CreateUpcomingGame`,
         method: "POST",
     });
     const createUpcomingGame = (input: CreateUpcomingGameInput) => commonFetch({input})
@@ -65,7 +66,7 @@ export const useCreateUpcomingGame = () => {
 
 export const useRsvpToGame = () => {
     const {commonFetch, isLoading, data} = useFetch<UpcomingGame>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/RsvpToGame",
+        url: `${Urls.apiUrl}/api/Club/RsvpToGame`,
         method: "PUT",
     });
     const rsvpToGame = (input: RsvpToGameInput) => commonFetch({input})
@@ -74,7 +75,7 @@ export const useRsvpToGame = () => {
 
 export const useGetAllClubMembers = () => {
     const {commonFetch, isLoading, data} = useFetch<User[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Club/GetAllClubMembers",
+        url: `${Urls.apiUrl}/api/Club/GetAllClubMembers`,
         method: "GET",
     });
     const getAllClubMembers = (input: GetAllClubMembersInput) => commonFetch({input})

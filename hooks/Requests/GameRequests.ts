@@ -7,11 +7,11 @@ import {
     GetUserRecentGamesInput,
     OngoingGame, SaveGameInput, StartGameInput, UpdateOngoingGameInput
 } from "@/hooks/Types/GameTypes";
-
+import {Urls} from "@/constants/Urls"
 
 export const useGetUserRecentGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Game/GetUserRecentGames",
+        url: `${Urls.apiUrl}/api/Game/GetUserRecentGames`,
         method: "GET",
     });
     const getUserRecentGames = (input: GetUserRecentGamesInput) => commonFetch({input})
@@ -20,7 +20,7 @@ export const useGetUserRecentGames = () => {
 
 export const useGetAllUsersGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Game/GetAllUsersGames",
+        url: `${Urls.apiUrl}/api/Game/GetAllUsersGames`,
         method: "GET",
     });
     const getAllUsersGames = (input: GetAllUsersGamesInput) => commonFetch({input})
@@ -29,7 +29,7 @@ export const useGetAllUsersGames = () => {
 
 export const useGetUserHandicapIndex = () => {
     const {commonFetch, isLoading, data} = useFetch<Number>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/Game/GetUserHandicapIndex",
+        url: `${Urls.apiUrl}/api/Game/GetUserHandicapIndex`,
         method: "GET",
     });
     const getUserHandicapIndex = (input: GetUserHandicapIndexInput) => commonFetch({input})
@@ -38,7 +38,7 @@ export const useGetUserHandicapIndex = () => {
 
 export const useStartGame = () => {
     const {commonFetch, isLoading, data} = useFetch<OngoingGame>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/OngoingGame/StartGame",
+        url: `${Urls.apiUrl}/api/OngoingGame/StartGame`,
         method: "POST",
     });
     const startGame = (input: StartGameInput) => commonFetch({input})
@@ -47,7 +47,7 @@ export const useStartGame = () => {
 
 export const useAcceptGameInvite = () => {
     const {commonFetch, isLoading, data} = useFetch<GameInvite>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/OngoingGame/AcceptGameInvite",
+        url: `${Urls.apiUrl}api/OngoingGame/AcceptGameInvite`,
         method: "POST",
     });
     const acceptGameInvite = (input: AcceptGameInviteInput) => commonFetch({input})
@@ -56,7 +56,7 @@ export const useAcceptGameInvite = () => {
 
 export const useGetUserOngoingGames = () => {
     const {commonFetch, isLoading, data} = useFetch<OngoingGame[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/OngoingGame/GetUserOngoingGames",
+        url: `${Urls.apiUrl}api/OngoingGame/GetUserOngoingGames`,
         method: "GET",
     });
     const getUserOngoingGames = (input: GetUserOngoingGamesInput) => commonFetch({input})
@@ -65,7 +65,7 @@ export const useGetUserOngoingGames = () => {
 
 export const useGetOngoingGame = () => {
     const {commonFetch, isLoading, data} = useFetch<OngoingGame>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/OngoingGame/GetOngoingGame",
+        url: `${Urls.apiUrl}/api/OngoingGame/GetOngoingGame`,
         method: "GET",
     });
     const getOngoingGame = (input: GetOngoingGameInput) => commonFetch({input})
@@ -74,7 +74,7 @@ export const useGetOngoingGame = () => {
 
 export const useGetOngoingGameScorecard = () => {
     const {commonFetch, isLoading, data} = useFetch<DetailScorecard>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/OngoingGame/GetOngoingGameScorecard",
+        url: `${Urls.apiUrl}/api/OngoingGame/GetOngoingGameScorecard`,
         method: "GET",
     });
     const getOngoingGameScorecard = (input: GetOngoingGameScorecardInput) => commonFetch({input})
@@ -83,7 +83,7 @@ export const useGetOngoingGameScorecard = () => {
 
 export const useUpdateOngoingGame = () => {
     const {commonFetch, isLoading, data} = useFetch<OngoingGame>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/OngoingGame/UpdateOngoingGame",
+        url: `${Urls.apiUrl}/api/OngoingGame/UpdateOngoingGame`,
         method: "PUT",
     });
     const updateOngoingGame = (input: UpdateOngoingGameInput) => commonFetch({input})
@@ -92,7 +92,7 @@ export const useUpdateOngoingGame = () => {
 
 export const useSaveGame = () => {
     const {commonFetch, isLoading, data} = useFetch<OngoingGame>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/OngoingGame/SaveGame",
+        url: `${Urls.apiUrl}/api/OngoingGame/SaveGame`,
         method: "POST",
     });
     const saveGame = (input: SaveGameInput) => commonFetch({input})

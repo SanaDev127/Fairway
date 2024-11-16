@@ -7,10 +7,11 @@ import {
     LeagueTable
 } from "@/hooks/Types/LeagueTypes";
 import {Game} from "@/hooks/Types/GameTypes";
+import {Urls} from "@/constants/Urls";
 
 export const useGetAllClubLeagues = () => {
     const {commonFetch, isLoading, data} = useFetch<League[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/League/GetAllClubLeagues",
+        url: `${Urls.apiUrl}/api/League/GetAllClubLeagues`,
         method: "GET",
     });
     const getAllClubLeagues = (input: GetAllClubLeaguesInput) => commonFetch({input})
@@ -19,7 +20,7 @@ export const useGetAllClubLeagues = () => {
 
 export const useGetAllLeagueGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/League/GetAllLeagueGames",
+        url: `${Urls.apiUrl}/api/League/GetAllLeagueGames`,
         method: "GET",
     });
     const getAllLeagueGames = (input: GetAllLeagueGamesInput) => commonFetch({input})
@@ -28,7 +29,7 @@ export const useGetAllLeagueGames = () => {
 
 export const useGenerateLeagueTable = () => {
     const {commonFetch, isLoading, data} = useFetch<LeagueTable>({
-        url: "https://af20-105-184-166-184.ngrok-free.app/api/League/GenerateLeagueTable",
+        url: `${Urls.apiUrl}/api/League/GenerateLeagueTable`,
         method: "GET",
     });
     const generateLeagueTable = (input: GenerateLeagueTableInput) => commonFetch({input})
