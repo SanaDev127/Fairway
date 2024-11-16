@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Modal } from 'react-native';
 import { useRouter } from "expo-router";
 import { globalStyles } from '@/assets/style/signinstyling';
 import CustomButton from '@/components/Butons/CustomButton';
@@ -20,7 +20,17 @@ const Home = () => {
  const [value, setValue] = useState('');
  const [value2, setValue2] = useState('');
  const [value3, setValue3] = useState('');
+ const [open, setOpen] = useState(false); //open and close modal
 
+
+ function openClubOptions (){
+    setOpen(!open);
+    console.log("open");
+}
+
+function closeClubOptions (){
+    setOpen(!open);
+}
 
  //const user = auth().currentUser
     return(
@@ -28,9 +38,34 @@ const Home = () => {
             <View style={globalStyles.container}>
                 <View style ={styles.btnContainer}>
                     <CustomButton
-                        onPress={()=> console.log("Pressed")}
+                        onPress={openClubOptions}
                         title='Club'
-                        buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/> 
+                        buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
+
+                        <Modal
+                            animationType="slide"
+                            transparent={true}
+                            visible={open}>
+                            <View style={styles.centeredView}>
+                                <View style={styles.modalContainer}>
+                                    <CustomButton
+                                        onPress={()=> router.push("./clubs")}
+                                        title='Create Club'
+                                        buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15}}/>
+                                    
+                                    <CustomButton
+                                        onPress={() => console.log('View Club button pressed')}
+                                        title='View Clubs'
+                                        buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15, marginBottom: 10}}/>
+
+                                    <TouchableOpacity
+                                        onPress={closeClubOptions}>
+                                        <Text>Close</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </Modal>
+
                 </View>
                 
                 <View style = {globalStyles.header}>
@@ -204,6 +239,29 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 1,
     },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22,
+      },
+    modalContainer: {
+        backgroundColor: "white",
+        margin: 20,
+        borderRadius: 20,
+        width:200,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+      },
+
 })
 
 export default Home;
