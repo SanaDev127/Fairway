@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Modal } from 'react-native';
 import { globalStyles } from '@/assets/style/signinstyling';
@@ -7,6 +8,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { CheckBox } from '@rneui/themed';
 import CalendarPicker from 'react-native-calendar-picker';
 import { useCourseApi } from '@/hooks/Api/CourseApi';
+import { useUserApi } from '@/hooks/Api/UserApi';
 
 
 const playerdata = [
@@ -17,22 +19,28 @@ const playerdata = [
 
 const StartGame = () => {
     const router = useRouter();
+    
+    useEffect(() => {
+        getAllCourses();
+        getAllBuddies({userId});
+      }, []);
+      
 
-    const [courseInput, setCourseInput] = React.useState('');
-    const [participantInput, setParticipantInput] = React.useState('');
-    const [hideContent, setHideContent] = React.useState(false);
     const [course, setCourse] = React.useState('');
-
+    const [participant, setParticipant] = React.useState('');
+    
     const [open, setOpen] = React.useState(false); //open and close modal
     const [selectedStartDate, setSelectedStartDate] = React.useState(null);
     const [selectedEndDate, setSelectedEndDate] = React.useState(null);
+    const [hideContent, setHideContent] = React.useState(false);
     const minDate = new Date();
+    
+    const userId = '672f5cce843765e9988738b1'; 
 
-    const {
-        getCourses: { query: getAllCourses, data, isLoading },
-      } = useCourseApi();
+    const { getCourses: { query: getAllCourses, data: courseData, isLoading: getAllCoursesLoading }} = useCourseApi();
+    //const { getUser: {query: getUser, data: getUserData, isLoading: getUserLoading}} = useUserApi();
+    const { getAllBuddies: {query: getAllBuddies, data: getAllBuddiesData, isLoading: getAllBuddiesLoading}} = useUserApi(); 
 
-    //   getAllCourses();
 
     function OpenDatepicker (){
         setOpen(!open);
@@ -67,12 +75,19 @@ const StartGame = () => {
                 <View style={globalStyles.border}>
                     <View style={globalStyles.header} >
                         <Text style={{ marginBottom: 25, alignSelf: 'center' }}>Course:</Text>
-                        <TextInput
-                            style={globalStyles.inputControl}
+                        <Dropdown
+                            style={styles.dropdown2}
+                            data={courseData ?? []}
+                            labelField={"courseName"}
+                            valueField={"id"}
                             placeholder='Search'
-                            placeholderTextColor="#6b7280"
-                            value={courseInput}
-                            onChangeText={setCourseInput}
+                            value={course}
+                            search
+                            searchPlaceholder='Search...'
+                            onChange={item => {
+                                setCourse(item.courseName);
+                                console.log(item.courseName);
+                            }}
                         />
 
                         
@@ -142,29 +157,36 @@ const StartGame = () => {
 
                         {/* Conditional rendering of additional content */}
                         {!hideContent && (
-                            <View style={globalStyles.header}>
-                                <Text style={{ marginBottom: 25, alignSelf: 'center' }}>Participants:</Text>
-                                <TextInput
-                                    style={globalStyles.inputControl}
-                                    placeholder='Search'
-                                    placeholderTextColor="#6b7280"
-                                    value={participantInput}
-                                    onChangeText={setParticipantInput}
-                                />
-
-                                <View style={styles.dropdownContainer}>
-                                    <Dropdown
-                                        style={styles.dropdown}
-                                        data={data ?? []}
-                                        labelField={"courseName"}
+                            <View style={styles.container}>
+                                <Text>Participants:</Text>
+                                {/* <Dropdown
+                                        style={styles.dropdown2}
+                                        data={getUserData ?? []}
+                                        labelField={"name"}
                                         valueField={"id"}
-                                        placeholder='Courses'
-                                        value={course}
+                                        placeholder='Select Participant'
+                                        value={participant}
                                         search
                                         searchPlaceholder='Search...'
                                         onChange={item => {
-                                            setCourse(item.courseName);
-                                            console.log(item.courseName);
+                                            setParticipant(item.name);
+                                            console.log(item.name);
+                                        }}
+                                    /> */}
+
+                                <View style={styles.container}>
+                                    <Dropdown
+                                        style={styles.dropdown2}
+                                        data={getAllBuddiesData ?? []} 
+                                        labelField={"name"}
+                                        valueField={"userID"}
+                                        placeholder='Participant'
+                                        value={participant}
+                                        search
+                                        searchPlaceholder='Search...'
+                                        onChange={item => {
+                                            setParticipant(item.userID);
+                                            console.log(item.userID);
                                         }}
                                     />
                                 </View>
@@ -201,13 +223,22 @@ const StartGame = () => {
                         )}
 
                             <CustomButton 
-                                onPress={()=> getAllCourses()}
+                                onPress={()=> console.log("Begin button clicked")}
                                 title='Begin'
                                 buttonStyle={{backgroundColor: "#C6ECAE", 
                                 alignSelf: "center", 
                                 marginTop: 100,
                                 paddingVertical: 20,
                                 paddingHorizontal: 40}}/>
+
+                                {/* <CustomButton 
+                                    onPress={()=> getUser()}
+                                    title='Begin'
+                                    buttonStyle={{backgroundColor: "#C6ECAE", 
+                                    alignSelf: "center", 
+                                    marginTop: 100,
+                                    paddingVertical: 20,
+                                    paddingHorizontal: 40}}/> */}
                     </View>
                 </View>
             </View>
@@ -219,6 +250,9 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 24,
         fontWeight: 'bold',
+    },
+    container:{
+        marginTop: 20,
     },
     profileimg: {
         width: 150,
@@ -256,6 +290,13 @@ const styles = StyleSheet.create({
         shadowRadius: 1.41,
         elevation: 2,
     },
+    dropdown2: {
+        height: 50,
+        borderColor: 'gray',
+        borderWidth: 0.5,
+        borderRadius: 8,
+        paddingHorizontal: 8,
+      },
     centeredView: {
         flex: 1,
         justifyContent: "center",
