@@ -2,9 +2,10 @@ import {Dropdown} from 'react-native-element-dropdown'
 import { globalStyles } from "@/assets/style/signinstyling";
 import { router, useRouter } from "expo-router";
 import React, { useState } from "react";
-import { View, SafeAreaView, Text, StyleSheet, TouchableOpacity, Modal, TextInput } from "react-native";
+import { View, SafeAreaView, Text, StyleSheet, TouchableOpacity, Modal, TextInput, FlatList } from "react-native";
 import CustomButton from '@/components/Butons/CustomButton';
 import CalendarPicker from 'react-native-calendar-picker';
+
 
 const data =[
     {label: 'item 1', value: '1'},
@@ -13,8 +14,21 @@ const data =[
     {label: 'item 4', value: '4'},
  ];
 
+
+
 const Game = () => {
-    
+
+    // Code inspired by the following YouTube video:
+    // Title:React Native Tutorial #7 - Flat List Component
+    // URL:https://www.youtube.com/watch?v=iMCM1NceGJY
+    // Channel: Net Ninja
+    // Published on: 2 December 2019
+     const  [searchData, setSearchData] = useState([
+        { name: 'Game 1', id: '1', course: 'Course A', date: '2024-10-17', score: '85' },
+        { name: 'Game 2', id: '2', course: 'Course B', date: '2024-10-18', score: '90' },
+        { name: 'Game 3', id: '3', course: 'Course C', date: '2024-10-19', score: '78' },
+        { name: 'Game 4', id: '4', course: 'Course D', date: '2024-10-20', score: '92' },
+    ])
     const router = useRouter();
 
     const [dateFilter, setdateFilter] = useState('');
@@ -26,14 +40,29 @@ const Game = () => {
     const [open, setOpen] = useState(false); //open and close modal
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
+
+    const[searchedGame, setSearchedGame] = useState('');
+
     const minDate = new Date();
 
+    // Code inspired by the following YouTube video:
+    // Title:React Native | How To Add A Date Picker
+    // URL:https://www.youtube.com/watch?v=22txA5uRhHo
+    // Channel: Declan Miller
+    // Published on: 7 February 2023
     function OpenDatepicker (){
         setOpen(!open);
     }
 
     function CloseDatePicker (){
         setOpen(!open);
+    }
+
+    function clearbtn (){
+        setSelectedStartDate(null);
+        setSelectedEndDate(null);
+        setCourseValue('');
+        setPlayerValue('');
     }
 
     const formatDate = (date) => {
@@ -141,10 +170,26 @@ const Game = () => {
                             title=' Search'
                             buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/> 
                         <CustomButton
-                            onPress={()=> console.log("Clear Button Pressed")}
+                            onPress={()=> {clearbtn()}}
                             title='Clear'
                             buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
                     </View>
+                </View>
+
+                <View>
+                    <FlatList
+                        data ={searchData}
+                        renderItem={({item}) => (    
+                           <View style={styles.itemContainer}>
+                            <Text style={styles.item}>{item.name}:</Text>
+                            <Text style={styles.item}>Course: {item.course || "Course Name"}</Text>
+                            <Text style={styles.item}>Date: {item.date || "Game Date"}</Text>
+                            <Text style={styles.item}>Score: {item.score || "User's Score"}</Text>
+                           </View>
+                        )}
+                        keyExtractor={(item) => item.id}
+                        />
+                        
                 </View>
             </View>
 
@@ -217,6 +262,23 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         marginHorizontal: 5,
         backgroundColor: "white",
+    },
+    itemContainer: {
+        padding: 15,
+        marginVertical: 10,
+        marginHorizontal: 16,
+        backgroundColor: "#f8f8f8",
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.5,
+        elevation: 2,
+    },
+    item: {
+        fontSize: 16,
+        color: "#555",
+        marginBottom: 4,
     },
 });
 
