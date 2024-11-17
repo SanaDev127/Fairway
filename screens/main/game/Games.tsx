@@ -101,9 +101,10 @@ const Game = () => {
 
                         </View>
 
-                        <TouchableOpacity onPress={OpenDatepicker}>
-                            <Text>Open</Text>
-                        </TouchableOpacity>
+                        <CustomButton 
+                            onPress={OpenDatepicker}
+                            title='Open'
+                            buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
 
                         <Modal
                             animationType='slide'
@@ -121,9 +122,10 @@ const Game = () => {
                                         onDateChange={onDateChange}
                                     />
                                     
-                                    <TouchableOpacity onPress={CloseDatePicker}>
-                                        <Text>close</Text>
-                                    </TouchableOpacity>
+                                    <CustomButton 
+                                        onPress={CloseDatePicker}
+                                        title='Close'
+                                        buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
 
                                 </View>
                             </View>
