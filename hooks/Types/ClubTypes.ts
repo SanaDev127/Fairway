@@ -77,6 +77,8 @@ export type RsvpToGameInput = {userId: string, gameId: string}
 
 export type GetAllClubMembersInput = {clubId: string}
 
+export type GetAllUserClubsInput = {userId: string}
+
 // These might not be necessary right now for the mobile app. But some could be later
 
 export type GenerateClubInviteInput = {clubId: string, userId: string}

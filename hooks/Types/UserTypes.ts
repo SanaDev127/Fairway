@@ -46,3 +46,5 @@ export type GetAllBuddiesInput = {userId: string}
 export type GetUserByFirebaseIdInput = {firebaseId: string}
 
 export type GetAllUserFriendshipRequestsInput = {userId: string}
+
+export type GetAllUserClubsInput = {userId: string}

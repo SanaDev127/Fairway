@@ -10,6 +10,7 @@ import {
 } from "@/hooks/Types/UserTypes";
 import {GameInvite} from "@/hooks/Types/GameTypes";
 import {Urls} from "@/constants/Urls"
+import {Club, GetAllUserClubsInput} from "@/hooks/Types/ClubTypes";
 
 export const useCreateUser = () => {
     const {commonFetch, isLoading, data} = useFetch<User>({
@@ -90,4 +91,13 @@ export const useGetAllUserFriendshipRequests = () => {
     });
     const getAllUserFriendshipRequests = (input: GetAllUserFriendshipRequestsInput) => commonFetch({input})
     return {getAllUserFriendshipRequests, isLoading, data}
+}
+
+export const useGetAllUserClubs = () => {
+    const {commonFetch, isLoading, data} = useFetch<Club[]>({
+        url: `${Urls.apiUrl}/api/User/GetAllUserClubs`,
+        method: "GET",
+    });
+    const getAllUserClubs = (input: GetAllUserClubsInput) => commonFetch({input})
+    return {getAllUserClubs, isLoading, data}
 }

@@ -3,7 +3,7 @@ import {
     useAcceptFriendshipRequest,
     useCreateBuddyInvite,
     useCreateUser, useGetAllBuddies,
-    useGetAllGameInvites, useGetAllUserFriendshipRequests,
+    useGetAllGameInvites, useGetAllUserClubs, useGetAllUserFriendshipRequests,
     useGetUser, useGetUserByFirebaseId
 } from "@/hooks/Requests/UserRequests";
 
@@ -62,6 +62,12 @@ export const useUserApi = () => {
         data: getAllUserFriendshipRequestsData,
     } = useGetAllUserFriendshipRequests();
 
+    const {
+        getAllUserClubs,
+        isLoading: getAllUserClubsLoading,
+        data: getAllUserClubsData,
+    } = useGetAllUserClubs()
+
     return {
         createUser: {
             mutation: createUser,
@@ -107,8 +113,11 @@ export const useUserApi = () => {
             query: getAllUserFriendshipRequests,
             isLoading: getAllUserFriendshipRequestsLoading,
             data: getAllUserFriendshipRequestsData,
+        },
+        getAllUserClubs: {
+            query: getAllUserClubs,
+            isLoading: getAllUserClubsLoading,
+            data: getAllUserClubsData,
         }
-
-
     }
 };

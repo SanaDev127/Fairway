@@ -81,3 +81,4 @@ export const useGetAllClubMembers = () => {
     const getAllClubMembers = (input: GetAllClubMembersInput) => commonFetch({input})
     return {getAllClubMembers, isLoading, data}
 }
+
