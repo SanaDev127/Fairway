@@ -6,6 +6,7 @@ import CustomButton from '@/components/Butons/CustomButton';
 import { Dropdown } from 'react-native-element-dropdown';
 import { CheckBox } from '@rneui/themed';
 import CalendarPicker from 'react-native-calendar-picker';
+import { useCourseApi } from '@/hooks/Api/CourseApi';
 
 
 const playerdata = [
@@ -19,12 +20,19 @@ const StartGame = () => {
 
     const [courseInput, setCourseInput] = React.useState('');
     const [participantInput, setParticipantInput] = React.useState('');
-    const [hideContent, setHideContent] = React.useState(false); 
+    const [hideContent, setHideContent] = React.useState(false);
+    const [course, setCourse] = React.useState('');
 
     const [open, setOpen] = React.useState(false); //open and close modal
     const [selectedStartDate, setSelectedStartDate] = React.useState(null);
     const [selectedEndDate, setSelectedEndDate] = React.useState(null);
     const minDate = new Date();
+
+    const {
+        getCourses: { query: getAllCourses, data, isLoading },
+      } = useCourseApi();
+
+    //   getAllCourses();
 
     function OpenDatepicker (){
         setOpen(!open);
@@ -50,6 +58,8 @@ const StartGame = () => {
             setSelectedEndDate(null); // Clear end date if a new start date is chosen
         }
     };
+
+
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#e8ecf4" }}>
@@ -145,16 +155,16 @@ const StartGame = () => {
                                 <View style={styles.dropdownContainer}>
                                     <Dropdown
                                         style={styles.dropdown}
-                                        data={playerdata}
-                                        labelField={"displayName"}
-                                        valueField={"displayName"}
-                                        placeholder='Current Player'
-                                        value={participantInput}
+                                        data={data ?? []}
+                                        labelField={"courseName"}
+                                        valueField={"id"}
+                                        placeholder='Courses'
+                                        value={course}
                                         search
                                         searchPlaceholder='Search...'
                                         onChange={item => {
-                                            setParticipantInput(item.displayName);
-                                            console.log(item.displayName);
+                                            setCourse(item.courseName);
+                                            console.log(item.courseName);
                                         }}
                                     />
                                 </View>
@@ -191,7 +201,7 @@ const StartGame = () => {
                         )}
 
                             <CustomButton 
-                                onPress={()=> console.log("Begin Button Pressed")}
+                                onPress={()=> getAllCourses()}
                                 title='Begin'
                                 buttonStyle={{backgroundColor: "#C6ECAE", 
                                 alignSelf: "center", 
