@@ -1,11 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useRouter } from "expo-router";
-import { View, Text, StyleSheet, SafeAreaView, TextInput, Modal } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TextInput, Modal, FlatList } from 'react-native';
 import { globalStyles } from '@/assets/style/signinstyling';
 import CustomButton from '@/components/Butons/CustomButton';
 import { Dropdown } from 'react-native-element-dropdown';
 import { CheckBox } from '@rneui/themed';
+import { ListItem } from '@rneui/themed';
 import CalendarPicker from 'react-native-calendar-picker';
 import { useCourseApi } from '@/hooks/Api/CourseApi';
 import { useUserApi } from '@/hooks/Api/UserApi';
@@ -28,6 +29,7 @@ const StartGame = () => {
 
     const [course, setCourse] = React.useState('');
     const [participant, setParticipant] = React.useState('');
+    const [participantList, setParticipantList] = React.useState<string[]>([]);
     
     const [open, setOpen] = React.useState(false); //open and close modal
     const [selectedStartDate, setSelectedStartDate] = React.useState(null);
@@ -73,8 +75,8 @@ const StartGame = () => {
         <SafeAreaView style={{ flex: 1, backgroundColor: "#e8ecf4" }}>
             <View style={globalStyles.container}>
                 <View style={globalStyles.border}>
-                    <View style={globalStyles.header} >
-                        <Text style={{ marginBottom: 25, alignSelf: 'center' }}>Course:</Text>
+                    <View style={styles.container} >
+                        <Text>Course:</Text>
                         <Dropdown
                             style={styles.dropdown2}
                             data={courseData ?? []}
@@ -186,24 +188,39 @@ const StartGame = () => {
                                         searchPlaceholder='Search...'
                                         onChange={item => {
                                             setParticipant(item.userID);
+                                            setParticipantList([...participantList, item.name]);
                                             console.log(item.userID);
+                                            console.log([...participantList, item.name]);
                                         }}
                                     />
+
+                                    <View>
+                                        <Text>Participants:</Text>
+                                        <FlatList
+                                            data={participantList}
+                                            renderItem={({ item }) => (
+                                            <ListItem>
+                                                <ListItem.Content>
+                                                <ListItem.Title>{item}</ListItem.Title>
+                                                </ListItem.Content>
+                                            </ListItem>
+                                            )}
+                                        />
+                                    </View>
+
                                 </View>
                                 <View style={ styles.radioBtnContainer}>
                                     <CheckBox
-                                    checked={hideContent}
-                                    onPress={() => console.log("Stroke play Checked")}
-                                    iconType="material-community"
-                                    checkedIcon="checkbox-outline"
-                                    uncheckedIcon="checkbox-blank-outline"
-                                    title="Stroke Play"
-                                    center
-                                    containerStyle={{ backgroundColor: 'transparent', borderWidth: 0 }}
-                                    wrapperStyle={{ backgroundColor: 'transparent' }}
-                                    
-                                    
-                                    />
+                                        checked={hideContent}
+                                        onPress={() => console.log("Stroke play Checked")}
+                                        iconType="material-community"
+                                        checkedIcon="checkbox-outline"
+                                        uncheckedIcon="checkbox-blank-outline"
+                                        title="Stroke Play"
+                                        center
+                                        containerStyle={{ backgroundColor: 'transparent', borderWidth: 0 }}
+                                        wrapperStyle={{ backgroundColor: 'transparent' }}        
+                                        />
 
                                     <CheckBox
                                         checked={hideContent}
@@ -215,8 +232,6 @@ const StartGame = () => {
                                         center
                                         containerStyle={{ backgroundColor: 'transparent', borderWidth: 0 }}
                                         wrapperStyle={{ backgroundColor: 'transparent' }}
-                                        
-                                        
                                     />
                                 </View>
                             </View>
