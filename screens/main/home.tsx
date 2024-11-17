@@ -46,24 +46,28 @@ function closeClubOptions (){
                             animationType="slide"
                             transparent={true}
                             visible={open}>
+                            
                             <View style={styles.centeredView}>
                                 <View style={styles.modalContainer}>
+
                                     <CustomButton
-                                        onPress={()=> router.push("./clubs")}
+                                        onPress={()=> console.log("pressed create club")}
                                         title='Create Club'
                                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15}}/>
                                     
                                     <CustomButton
-                                        onPress={() => console.log('View Club button pressed')}
-                                        title='View Clubs'
+                                        onPress={()=> router.push("../profile/clubDetails")}
+                                        title='Go to Club'
                                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15, marginBottom: 10}}/>
 
                                     <TouchableOpacity
                                         onPress={closeClubOptions}>
                                         <Text>Close</Text>
                                     </TouchableOpacity>
+
                                 </View>
                             </View>
+                            
                         </Modal>
 
                 </View>
