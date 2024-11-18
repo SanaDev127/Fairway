@@ -27,6 +27,7 @@ export function useFetch<T> ({ url, method }: UseFetchProps) {
 
         const response = await fetch(url, {
             method,
+            headers: new Headers({'content-type': 'application/json;charset=UTF-8',}),
             ...DEFAULT_FETCH_OPTIONS,
             ...fetchOptions,
             body: JSON.stringify(input),
@@ -43,4 +44,4 @@ export function useFetch<T> ({ url, method }: UseFetchProps) {
     };
 
     return {isLoading, commonFetch, data};
-};
+}

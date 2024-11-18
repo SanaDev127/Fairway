@@ -24,8 +24,8 @@ const StartGame = () => {
     
     useEffect(() => {
         getAllCourses();
-        getAllBuddies({userId: userId});
-        getUser({userId: userId});
+        getAllBuddies({userId:"672f5cce843765e9988738b1",});
+        getUser({userId:"672f5cce843765e9988738b1",});
       }, []);
       
 
