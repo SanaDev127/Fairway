@@ -6,7 +6,7 @@ export const useGetAllCourses = () => {
     // Must change url when api is hosted
     const {commonFetch, isLoading, data } = useFetch<Course[]>({
         url: `${Urls.apiUrl}/api/Course/GetAllCourses`,
-        method: "GET",
+        method: "POST",
     });
 
     const getAllCourses = () => commonFetch({})
@@ -18,7 +18,7 @@ export const useGetCourse = () => {
    
     const { commonFetch, isLoading, data } = useFetch<Course>({
         url: `${Urls.apiUrl}/api/Course/GetCourse`,
-        method: "GET",
+        method: "POST",
     });
 
     const getCourse = (input: GetCourseInput) => commonFetch({ input })

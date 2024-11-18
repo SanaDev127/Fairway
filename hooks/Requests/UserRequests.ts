@@ -1,3 +1,4 @@
+
 import {useFetch} from "@/hooks/useFetch";
 import {
     AcceptBuddyInviteInput, AcceptFriendshipRequestInput,
@@ -24,7 +25,7 @@ export const useCreateUser = () => {
 export const useGetUser = () => {
     const {commonFetch, isLoading, data} = useFetch<User>({
         url: `${Urls.apiUrl}/api/User/GetUser`,
-        method: "GET",
+        method: "POST",
     });
     const getUser = (input: GetUserInput) => commonFetch({input})
     return {getUser, isLoading, data}
@@ -33,7 +34,7 @@ export const useGetUser = () => {
 export const useGetAllGameInvites = () => {
     const {commonFetch, isLoading, data} = useFetch<GameInvite[]>({
         url: `${Urls.apiUrl}/api/User/GetAllGameInvites`,
-        method: "GET",
+        method: "POST",
     });
     const getAllGameInvites = (input: GetAllGameInvitesInput) => commonFetch({input})
     return {getAllGameInvites, isLoading, data}
@@ -69,7 +70,7 @@ export const useAcceptFriendshipRequest = () => {
 export const useGetAllBuddies = () => {
     const {commonFetch, isLoading, data} = useFetch<User[]>({
         url: `${Urls.apiUrl}/api/User/GetAllBuddies`,
-        method: "GET",
+        method: "POST",
     });
     const getAllBuddies = (input: GetAllBuddiesInput) => commonFetch({input})
     return {getAllBuddies, isLoading, data}
@@ -78,7 +79,7 @@ export const useGetAllBuddies = () => {
 export const useGetUserByFirebaseId = () => {
     const {commonFetch, isLoading, data} = useFetch<User>({
         url: `${Urls.apiUrl}/api/User/GetUserByFirebaseId`,
-        method: "GET",
+        method: "POST",
     });
     const getUserByFirebaseId = (input: GetUserByFirebaseIdInput) => commonFetch({input})
     return {getUserByFirebaseId, isLoading, data}
@@ -87,7 +88,7 @@ export const useGetUserByFirebaseId = () => {
 export const useGetAllUserFriendshipRequests = () => {
     const {commonFetch, isLoading, data} = useFetch<FriendshipRequest[]>({
         url: `${Urls.apiUrl}/User/GetAllUserFriendshipRequests`,
-        method: "GET",
+        method: "POST",
     });
     const getAllUserFriendshipRequests = (input: GetAllUserFriendshipRequestsInput) => commonFetch({input})
     return {getAllUserFriendshipRequests, isLoading, data}
@@ -96,7 +97,7 @@ export const useGetAllUserFriendshipRequests = () => {
 export const useGetAllUserClubs = () => {
     const {commonFetch, isLoading, data} = useFetch<Club[]>({
         url: `${Urls.apiUrl}/api/User/GetAllUserClubs`,
-        method: "GET",
+        method: "POST",
     });
     const getAllUserClubs = (input: GetAllUserClubsInput) => commonFetch({input})
     return {getAllUserClubs, isLoading, data}

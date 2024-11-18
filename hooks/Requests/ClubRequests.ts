@@ -22,7 +22,7 @@ export const useCreateClub = () => {
 export const useGetClubsRecentGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
         url: `${Urls.apiUrl}/api/Club/GetClubsRecentGames`,
-        method: "GET",
+        method: "POST",
     });
     const getClubsRecentGames = (input: GetClubsRecentGamesInput) => commonFetch({input})
     return {getClubsRecentGames, isLoading, data}
@@ -31,7 +31,7 @@ export const useGetClubsRecentGames = () => {
 export const useGetAllClubGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
         url: `${Urls.apiUrl}/api/Club/GetAllClubGames`,
-        method: "GET",
+        method: "POST",
     });
     const getAllClubGames = (input: GetAllClubsGamesInput) => commonFetch({input})
     return {getAllClubGames, isLoading, data}
@@ -40,7 +40,7 @@ export const useGetAllClubGames = () => {
 export const useGetClubUpcomingGames = () => {
     const {commonFetch, isLoading, data} = useFetch<UpcomingGame[]>({
         url: `${Urls.apiUrl}/api/Club/GetClubUpcomingGames`,
-        method: "GET",
+        method: "POST",
     });
     const getClubUpcomingGames = (input: GetClubUpcomingGamesInput) => commonFetch({input})
     return {getClubUpcomingGames, isLoading, data}
@@ -49,7 +49,7 @@ export const useGetClubUpcomingGames = () => {
 export const useGetUsersUpcomingGames = () => {
     const {commonFetch, isLoading, data} = useFetch<UpcomingGame[]>({
         url: `${Urls.apiUrl}/api/Club/GetUsersUpcomingGames`,
-        method: "GET",
+        method: "POST",
     });
     const getUsersUpcomingGames = (input: GetUsersUpcomingGamesInput) => commonFetch({input})
     return {getUsersUpcomingGames, isLoading, data}
@@ -76,7 +76,7 @@ export const useRsvpToGame = () => {
 export const useGetAllClubMembers = () => {
     const {commonFetch, isLoading, data} = useFetch<User[]>({
         url: `${Urls.apiUrl}/api/Club/GetAllClubMembers`,
-        method: "GET",
+        method: "POST",
     });
     const getAllClubMembers = (input: GetAllClubMembersInput) => commonFetch({input})
     return {getAllClubMembers, isLoading, data}

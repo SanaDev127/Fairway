@@ -75,7 +75,7 @@ export const useUserApi = () => {
             data: createUserData,
         },
         getUser: {
-            query: getUser,
+            mutation: getUser,
             isLoading: getUserLoading,
             data: getUserData,
         },
@@ -100,7 +100,7 @@ export const useUserApi = () => {
             data: acceptFriendshipRequestData,
         },
         getAllBuddies: {
-            query: getAllBuddies,
+            mutation: getAllBuddies,
             isLoading: getAllBuddiesLoading,
             data: getAllBuddiesData,
         },

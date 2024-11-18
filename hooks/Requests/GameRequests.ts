@@ -1,3 +1,4 @@
+
 import {useFetch} from "@/hooks/useFetch";
 import {
     AcceptGameInviteInput, DetailScorecard,
@@ -12,7 +13,7 @@ import {Urls} from "@/constants/Urls"
 export const useGetUserRecentGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
         url: `${Urls.apiUrl}/api/Game/GetUserRecentGames`,
-        method: "GET",
+        method: "POST",
     });
     const getUserRecentGames = (input: GetUserRecentGamesInput) => commonFetch({input})
     return {getUserRecentGames, isLoading, data}
@@ -21,7 +22,7 @@ export const useGetUserRecentGames = () => {
 export const useGetAllUsersGames = () => {
     const {commonFetch, isLoading, data} = useFetch<Game[]>({
         url: `${Urls.apiUrl}/api/Game/GetAllUsersGames`,
-        method: "GET",
+        method: "POST",
     });
     const getAllUsersGames = (input: GetAllUsersGamesInput) => commonFetch({input})
     return {getAllUsersGames, isLoading, data}
@@ -30,7 +31,7 @@ export const useGetAllUsersGames = () => {
 export const useGetUserHandicapIndex = () => {
     const {commonFetch, isLoading, data} = useFetch<Number>({
         url: `${Urls.apiUrl}/api/Game/GetUserHandicapIndex`,
-        method: "GET",
+        method: "POST",
     });
     const getUserHandicapIndex = (input: GetUserHandicapIndexInput) => commonFetch({input})
     return {getUserHandicapIndex, isLoading, data}
@@ -57,7 +58,7 @@ export const useAcceptGameInvite = () => {
 export const useGetUserOngoingGames = () => {
     const {commonFetch, isLoading, data} = useFetch<OngoingGame[]>({
         url: `${Urls.apiUrl}api/OngoingGame/GetUserOngoingGames`,
-        method: "GET",
+        method: "POST",
     });
     const getUserOngoingGames = (input: GetUserOngoingGamesInput) => commonFetch({input})
     return {getUserOngoingGames, isLoading, data}
@@ -66,7 +67,7 @@ export const useGetUserOngoingGames = () => {
 export const useGetOngoingGame = () => {
     const {commonFetch, isLoading, data} = useFetch<OngoingGame>({
         url: `${Urls.apiUrl}/api/OngoingGame/GetOngoingGame`,
-        method: "GET",
+        method: "POST",
     });
     const getOngoingGame = (input: GetOngoingGameInput) => commonFetch({input})
     return {getOngoingGame, isLoading, data}
@@ -75,7 +76,7 @@ export const useGetOngoingGame = () => {
 export const useGetOngoingGameScorecard = () => {
     const {commonFetch, isLoading, data} = useFetch<DetailScorecard>({
         url: `${Urls.apiUrl}/api/OngoingGame/GetOngoingGameScorecard`,
-        method: "GET",
+        method: "POST",
     });
     const getOngoingGameScorecard = (input: GetOngoingGameScorecardInput) => commonFetch({input})
     return {getOngoingGameScorecard, isLoading, data}

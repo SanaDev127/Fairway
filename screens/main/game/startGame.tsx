@@ -10,6 +10,7 @@ import { ListItem } from '@rneui/themed';
 import CalendarPicker from 'react-native-calendar-picker';
 import { useCourseApi } from '@/hooks/Api/CourseApi';
 import { useUserApi } from '@/hooks/Api/UserApi';
+import { User } from '@/hooks/Types/UserTypes';
 
 
 const playerdata = [
@@ -23,7 +24,8 @@ const StartGame = () => {
     
     useEffect(() => {
         getAllCourses();
-        getAllBuddies({userId});
+        getAllBuddies({userId: userId});
+        getUser({userId: userId});
       }, []);
       
 
@@ -37,11 +39,12 @@ const StartGame = () => {
     const [hideContent, setHideContent] = React.useState(false);
     const minDate = new Date();
     
-    const userId = '672f5cce843765e9988738b1'; 
+    //const userId ="508213e1-f029-4418-87fd-56bdff02d4aa";
+    const userId ="672f5cce843765e9988738b1";
 
     const { getCourses: { query: getAllCourses, data: courseData, isLoading: getAllCoursesLoading }} = useCourseApi();
-    //const { getUser: {query: getUser, data: getUserData, isLoading: getUserLoading}} = useUserApi();
-    const { getAllBuddies: {query: getAllBuddies, data: getAllBuddiesData, isLoading: getAllBuddiesLoading}} = useUserApi(); 
+    const { getUser: {mutation: getUser, data: getUserData, isLoading: getUserLoading}} = useUserApi();
+    const { getAllBuddies: {mutation: getAllBuddies, data: getAllBuddiesData, isLoading: getAllBuddiesLoading}} = useUserApi(); 
 
 
     function OpenDatepicker (){
@@ -76,7 +79,7 @@ const StartGame = () => {
             <View style={globalStyles.container}>
                 <View style={globalStyles.border}>
                     <View style={styles.container} >
-                        <Text>Course:</Text>
+                        <Text style={{ marginBottom: 25, alignSelf: 'center' }}>Course:</Text>
                         <Dropdown
                             style={styles.dropdown2}
                             data={courseData ?? []}
@@ -177,7 +180,7 @@ const StartGame = () => {
                                     /> */}
 
                                 <View style={styles.container}>
-                                    <Dropdown
+                                    {/* <Dropdown
                                         style={styles.dropdown2}
                                         data={getAllBuddiesData ?? []} 
                                         labelField={"name"}
@@ -187,25 +190,35 @@ const StartGame = () => {
                                         search
                                         searchPlaceholder='Search...'
                                         onChange={item => {
-                                            setParticipant(item.userID);
-                                            setParticipantList([...participantList, item.name]);
-                                            console.log(item.userID);
-                                            console.log([...participantList, item.name]);
+                                            setParticipant(item.name);
+                                            // setParticipantList([...participantList, item.name]);
+                                            console.log(item.id);
+                                            
                                         }}
-                                    />
+                                    /> */}
 
                                     <View>
-                                        <Text>Participants:</Text>
+                                        {/* <FlatList
+                                            data ={searchData}
+                                            renderItem={({item}) => (    
+                                            <View style={styles.itemContainer}>
+                                                <Text style={styles.item}>{item.name}:</Text>
+                                                <Text style={styles.item}>Course: {item.course || "Course Name"}</Text>
+                                                <Text style={styles.item}>Date: {item.date || "Game Date"}</Text>
+                                                <Text style={styles.item}>Score: {item.score || "User's Score"}</Text>
+                                            </View>
+                                            )}
+                                            keyExtractor={(item) => item.id}
+                                            /> */}
+                                        {/* <Text style={{ marginBottom: 25, alignSelf: 'center' }}>Participants:</Text>
                                         <FlatList
                                             data={participantList}
                                             renderItem={({ item }) => (
-                                            <ListItem>
-                                                <ListItem.Content>
-                                                <ListItem.Title>{item}</ListItem.Title>
-                                                </ListItem.Content>
-                                            </ListItem>
+                                            <View>
+                                                <Text>{item}</Text>
+                                            </View>
                                             )}
-                                        />
+                                        /> */}
                                     </View>
 
                                 </View>
