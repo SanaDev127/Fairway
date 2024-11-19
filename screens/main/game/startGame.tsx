@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { useEffect } from 'react';
 import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Modal, FlatList } from 'react-native';
@@ -251,7 +251,7 @@ const StartGame = () => {
                         )}
 
                             <CustomButton 
-                                onPress={()=> console.log("Begin button clicked")}
+                                onPress={()=> router.push("/league/LeagueTable")}
                                 title='Begin'
                                 buttonStyle={{backgroundColor: "#C6ECAE", 
                                 alignSelf: "center", 
