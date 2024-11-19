@@ -1,18 +1,15 @@
 import {Dropdown} from 'react-native-element-dropdown'
 import { globalStyles } from "@/assets/style/signinstyling";
+import { FlatListStyle } from "@/assets/style/flatListStyle";
 import { router, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { View, SafeAreaView, Text, StyleSheet, TouchableOpacity, Modal, TextInput, FlatList } from "react-native";
 import CustomButton from '@/components/Butons/CustomButton';
 import CalendarPicker from 'react-native-calendar-picker';
+import { coursesData, playerdata } from "@/constants/Data";
 
 
-const data =[
-    {label: 'item 1', value: '1'},
-    {label: 'item 2', value: '2'},
-    {label: 'item 3', value: '3'},
-    {label: 'item 4', value: '4'},
- ];
+
 
 
 
@@ -136,11 +133,13 @@ const Game = () => {
                     <View style={styles.dropdownContainer}>
                         <Text>Course filter:</Text>
                         <Dropdown
-                            data={data}
-                            labelField={"label"}
+                            data={coursesData}
+                            labelField={"courseName"}
                             valueField={"value"}
                             placeholder="Select Course"
                             value={courseValue}
+                            search
+                            searchPlaceholder="Search..."
                             onChange={item => {
                                 setCourseValue(item.value);
                                 console.log(item.value);
@@ -152,14 +151,15 @@ const Game = () => {
                     <View style={styles.dropdownContainer}>
                         <Text>Player filter:</Text>
                         <Dropdown
-                            data={data}
-                            labelField={"label"}
-                            valueField={"value"}
+                            data={playerdata}
+                            key={"playerId"}
+                            labelField={"playerName"}
+                            valueField={"playerId"}
                             placeholder="Select Player"
                             value={playerValue}
                             onChange={item => {
-                                setPlayerValue(item.value);
-                                console.log(item.value);
+                                setPlayerValue(item.playerId);
+                                console.log(item.playerId);
                             }}
                             style={styles.dropdown}
                         />
@@ -176,15 +176,15 @@ const Game = () => {
                     </View>
                 </View>
 
-                <View>
+                <View style ={{flex: 1}}>
                     <FlatList
                         data ={searchData}
                         renderItem={({item}) => (    
-                           <View style={styles.itemContainer}>
-                            <Text style={styles.item}>{item.name}:</Text>
-                            <Text style={styles.item}>Course: {item.course || "Course Name"}</Text>
-                            <Text style={styles.item}>Date: {item.date || "Game Date"}</Text>
-                            <Text style={styles.item}>Score: {item.score || "User's Score"}</Text>
+                           <View style={FlatListStyle.itemContainer}>
+                            <Text style={FlatListStyle.item}>{item.name}:</Text>
+                            <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
+                            <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
+                            <Text style={FlatListStyle.item}>Score: {item.score || "User's Score"}</Text>
                            </View>
                         )}
                         keyExtractor={(item) => item.id}

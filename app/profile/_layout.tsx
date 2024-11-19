@@ -5,7 +5,7 @@ const Layout = () => {
         <Stack>
       <Stack.Screen name="buddies" options={{headerShown: false}} />
       <Stack.Screen name="clubDetails" options={{headerShown: false}} />
-      <Stack.Screen name="personDetails" options={{headerShown: false}} />
+      <Stack.Screen name="personalDetails" options={{headerShown: false}} />
       <Stack.Screen name="profileHome" options={{headerShown: false}} />
     </Stack>      
     )
