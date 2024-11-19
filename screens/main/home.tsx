@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Modal, FlatList } from 'react-native';
 import { useRouter } from "expo-router";
 import { globalStyles } from '@/assets/style/signinstyling';
 import CustomButton from '@/components/Butons/CustomButton';
@@ -7,6 +7,7 @@ import {Dropdown} from 'react-native-element-dropdown'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from "@react-native-firebase/auth";
+import { FlatListStyle } from '@/assets/style/flatListStyle';
 
 const data =[
     {label: 'Game 1', value: '1'},
@@ -15,12 +16,19 @@ const data =[
     {label: 'Game 4', value: '4'},
  ];
 
+const Tab = createBottomTabNavigator();
+
 const Home = () => {
  const router = useRouter();
- const [value, setValue] = useState('');
- const [value2, setValue2] = useState('');
  const [value3, setValue3] = useState('');
  const [open, setOpen] = useState(false); //open and close modal
+ const  [recentPlayedData, setRecentPlayedData] = useState([
+    { name: 'Game 1', id: '1', course: 'Kyalami Country Club', date: '2024-10-17' },
+]);
+
+const  [continuePlayingData, setContinuePlayingData] = useState([
+    { name: 'Game 1', id: '1', course: 'Centurion Country Club', date: '2024-11-21' },
+])
 
 
  function openClubOptions (){
@@ -86,23 +94,28 @@ function closeClubOptions (){
                     </Text> 
                     
                     <View style={styles.dropdownContainer}>
-                        <Dropdown
-                            data={data}
-                            labelField={"label"}
-                            valueField={"value"}
-                            placeholder="Select Game"
-                            value={value}
-                            onChange={item => {
-                                setValue(item.value);
-                                console.log(item.value);
-                            }}
-                            style={styles.dropdown}
+                    <FlatList
+                        data ={continuePlayingData}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({item}) => (
+                            <TouchableOpacity 
+                                onPress={() => console.log("Selected game: " + item.course)}
+                                >    
+                                
+                                <View style={FlatListStyle.itemContainer}>
+                                        <Text style={FlatListStyle.item}>Game Name: {item.name}</Text>
+                                        <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
+                                        <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
+                                </View>
+
+                            </TouchableOpacity>
+                        )}
                         />
                         
 
-                        <TouchableOpacity onPress={() => console.log("Selected game: " + value)}>
+                        {/* <TouchableOpacity onPress={() => console.log("Selected game: " + value)}>
                             <Text style ={styles.label}>Select</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                 </View>
 
@@ -110,23 +123,20 @@ function closeClubOptions (){
                     <Text 
                     style={styles.label}>Recent Played
                     </Text> 
-                    <Dropdown
-                        data={data}
-                        labelField={"label"}
-                        valueField={"value"}
-                        placeholder="Select Game"
-                        value={value2}
-                        search
-                        searchPlaceholder="Search..."
-                        maxHeight={300}
-                        onChange={item => {
-                            setValue2(item.value);
-                            console.log(item.value);
-                        }}
-                        style={styles.dropdown2}
-                    />
+                    <FlatList
+                        data ={recentPlayedData}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({item}) => (    
+                           <View style={FlatListStyle.itemContainer}>
+                                <Text style={FlatListStyle.item}>Game Name: {item.name}</Text>
+                                <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
+                                <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
+                           </View>
+                        )}
+
+                        />
                 </View>
-                <View style={styles.container}>
+                {/* <View style={styles.container}>
                     <Text 
                         style={styles.label}>Invites
                     </Text> 
@@ -145,7 +155,7 @@ function closeClubOptions (){
                         }}
                         style={styles.dropdown2}
                     />
-                </View>
+                </View> */}
                 <View style={styles.bottomButtonsContainer}>
                     <CustomButton
                         onPress={() => auth().signOut()}

@@ -11,6 +11,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 import { useCourseApi } from '@/hooks/Api/CourseApi';
 import { useUserApi } from '@/hooks/Api/UserApi';
 import { User } from '@/hooks/Types/UserTypes';
+import { coursesData } from "@/constants/Data";
 
 
 const playerdata = [
@@ -82,9 +83,9 @@ const StartGame = () => {
                         <Text style={{ marginBottom: 25, alignSelf: 'center' }}>Course:</Text>
                         <Dropdown
                             style={styles.dropdown2}
-                            data={courseData ?? []}
+                            data={coursesData}
                             labelField={"courseName"}
-                            valueField={"id"}
+                            valueField={"value"}
                             placeholder='Search'
                             value={course}
                             search
