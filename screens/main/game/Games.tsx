@@ -7,7 +7,7 @@ import { View, SafeAreaView, Text, StyleSheet, TouchableOpacity, Modal, TextInpu
 import CustomButton from '@/components/Butons/CustomButton';
 import CalendarPicker from 'react-native-calendar-picker';
 import { coursesData, playerdata } from "@/constants/Data";
-
+import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
 
 
 
@@ -79,6 +79,10 @@ const Game = () => {
         }
     };
 
+    const [isModalVisible, setModalVisible] = useState(false);
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
     return (
         <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}>
             <View style={globalStyles.container}>
@@ -180,16 +184,19 @@ const Game = () => {
                     <FlatList
                         data ={searchData}
                         renderItem={({item}) => (    
-                           <View style={FlatListStyle.itemContainer}>
-                            <Text style={FlatListStyle.item}>{item.name}:</Text>
-                            <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
-                            <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
-                            <Text style={FlatListStyle.item}>Score: {item.score || "User's Score"}</Text>
-                           </View>
+                            <TouchableOpacity
+                            onPress={() => toggleModal()}>
+                                <View style={FlatListStyle.itemContainer}>
+                                        <Text style={FlatListStyle.item}>{item.name}:</Text>
+                                        <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
+                                        <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
+                                        <Text style={FlatListStyle.item}>Score: {item.score || "User's Score"}</Text>
+                                </View>
+                            </TouchableOpacity>
                         )}
                         keyExtractor={(item) => item.id}
                         />
-                        
+                    <ActiveGameScorecard isVisible={isModalVisible} onClose={toggleModal}/> 
                 </View>
             </View>
 

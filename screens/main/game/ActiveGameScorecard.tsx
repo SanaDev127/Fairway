@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
         elevation: 20,
     },
     modal: {
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'center',
         margin: 0,
     },
 })
