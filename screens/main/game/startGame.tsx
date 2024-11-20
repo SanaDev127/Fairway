@@ -1,4 +1,4 @@
- import React from 'react';
+ import React, {useState} from 'react';
 import { useEffect } from 'react';
 import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Modal, FlatList } from 'react-native';
@@ -71,8 +71,6 @@ const StartGame = () => {
             setSelectedEndDate(null); // Clear end date if a new start date is chosen
         }
     };
-
-
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#e8ecf4" }}>
@@ -251,13 +249,16 @@ const StartGame = () => {
                         )}
 
                             <CustomButton 
-                                onPress={()=> router.push("/league/LeagueTable")}
+                                onPress={()=> router.push("../game/StartGame")}
                                 title='Begin'
                                 buttonStyle={{backgroundColor: "#C6ECAE", 
                                 alignSelf: "center", 
                                 marginTop: 100,
                                 paddingVertical: 20,
                                 paddingHorizontal: 40}}/>
+
+
+
 
                                 {/* <CustomButton 
                                     onPress={()=> getUser()}
