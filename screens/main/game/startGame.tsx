@@ -252,7 +252,7 @@ const StartGame = () => {
                         )}
 
                             <CustomButton 
-                                onPress={()=> router.push("/league/LeagueTable")}
+                                onPress={()=> router.push("./league/LeagueTable")}
                                 title='Begin'
                                 buttonStyle={{backgroundColor: "#C6ECAE", 
                                 alignSelf: "center", 
