@@ -57,7 +57,7 @@ function closeClubOptions (){
             <View style={globalStyles.container}>
                 <View style ={styles.btnContainer}>
                     <CustomButton
-                        onPress={() => router.push("../club/ClubHome")}
+                        onPress={openClubOptions}
                         title='Club'
                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
 
@@ -75,7 +75,7 @@ function closeClubOptions (){
                                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15}}/>
                                     
                                     <CustomButton
-                                        onPress={()=> router.push("../profile/clubDetails")}
+                                        onPress={()=> router.push("../club/ClubHome")}
                                         title='Go to Club'
                                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15, marginBottom: 10}}/>
 
@@ -170,13 +170,8 @@ function closeClubOptions (){
                     />
                 </View> */}
                 <View style={styles.bottomButtonsContainer}>
-                <NavigationButtons
-                        onPress={() => router.replace("../auth/home")}
-                        imageSource={require("@/assets/images/home_icon.png")}                       
-                        label='Home'
-                        />
                     <NavigationButtons
-                        onPress={() => router.push("../game/Games")}
+                        onPress={() => router.push("../club/noticeBoard")}
                         imageSource={require("@/assets/images/game_icon.png")}                       
                         label='Games'
                         />
@@ -192,6 +187,13 @@ function closeClubOptions (){
                         imageSource={require("@/assets/images/profile_icon.png")}                       
                         label='Profile'
                         />
+                    <NavigationButtons
+                        onPress={() => auth().signOut()}
+                        imageSource={require("@/assets/images/logout_icon.png")}                       
+                        label='Logout'
+                        />
+
+
 
 
                 </View>
@@ -245,7 +247,7 @@ const styles = StyleSheet.create({
     },
     btnContainer : {
         position: "absolute",
-        top: 10,
+        top: 15,
         right: 10,
     },
     item: {

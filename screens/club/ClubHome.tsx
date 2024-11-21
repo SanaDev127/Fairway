@@ -5,6 +5,8 @@ import { globalStyles } from '@/assets/style/signinstyling';
 import CustomButton from '@/components/Butons/CustomButton';
 import { FlatListStyle } from '@/assets/style/flatListStyle';
 import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
+import NavigationButtons from '@/components/Butons/NavigationButtons';
+
 
 const ClubHome = () => {
 
@@ -103,21 +105,25 @@ const ClubHome = () => {
 
 
                 <View style={styles.bottomButtonsContainer}>
-                    <CustomButton
+                    <NavigationButtons
                         onPress={() => router.push("../league/LeagueTable")}
-                        title='League'
-                        buttonStyle={styles.bottomButton}
-                    />
-                    <CustomButton
+                        imageSource={require("@/assets/images/league_icon.png")}                       
+                        label='League'
+                        />
+
+                    <NavigationButtons
                         onPress={() => router.push("../game/Games")}
-                        title='Games'
-                        buttonStyle={styles.bottomButton}
-                    />
-                    <CustomButton
-                        onPress={() => console.log("../club/clubInfoScreenThing")}
-                        title='Club'
-                        buttonStyle={styles.bottomButton}
-                    />
+                        imageSource={require("@/assets/images/game_icon.png")}                       
+                        label='Games'
+                        />
+
+                    <NavigationButtons
+                        onPress={() => console.log("../club/ClubScreen")}
+                        imageSource={require("@/assets/images/club_icon.png")}                       
+                        label='Club'
+                        />
+
+
                 </View>
             </View>
         </SafeAreaView>

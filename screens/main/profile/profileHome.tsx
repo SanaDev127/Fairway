@@ -9,7 +9,7 @@ import auth from "@react-native-firebase/auth";
 const ProfileHome = () => {
     const router = useRouter();
     return(
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1, backgroundColor:"#e8ecf4"}}>
             <View style = {globalStyles.header}>
                     <Text style={globalStyles.title}>Profile</Text>
                     <Image 
@@ -31,10 +31,10 @@ const ProfileHome = () => {
                      title='Buddies'
                      buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
 
-                <CustomButton
+                {/* <CustomButton
                      onPress={() => auth().signOut()}
                      title='Logout'
-                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
+                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/> */}
 
                     
 

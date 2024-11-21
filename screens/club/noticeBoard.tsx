@@ -29,10 +29,10 @@ const NoticeBoard = () => {
     ])
 
     const noticeBoardData = [
-        {id: '1', Organiser: 'Hinata', location:'Akasia', time: '2024-10-17', availableSlots:'2'},
-        {id: '2', Organiser: 'Naruto', location:'Wingate Park Country Club', time: '2025-01-17', availableSlots:'7'},
-        {id: '3', Organiser: 'Sasuke', location:'Centurion Country Club', time: '2025-02-17', availableSlots:'5'},
-        {id: '4', Organiser: 'Sakura', location:'Krugersdorp Golf Club', time: '2025-03-17', availableSlots:'6'},
+        {id: '1', Organiser: 'Tony', location:'Akasia', time: '2024-10-17', availableSlots:'2'},
+        {id: '2', Organiser: 'Harvey', location:'Wingate Park Country Club', time: '2025-01-17', availableSlots:'7'},
+        {id: '3', Organiser: 'Bruce', location:'Centurion Country Club', time: '2025-02-17', availableSlots:'5'},
+        {id: '4', Organiser: 'Steve', location:'Krugersdorp Golf Club', time: '2025-03-17', availableSlots:'6'},
     ];
 
     function openPostGame (){

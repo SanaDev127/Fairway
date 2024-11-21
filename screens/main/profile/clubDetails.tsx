@@ -26,12 +26,7 @@ const ClubDetails = () => {
                     <Text style={styles.value}>{clubDetails.memberRole}</Text>
                 </View>
 
-                <View style={styles.buttonContainer}>
-                    <CustomButton 
-                        title="Leave Club" 
-                        onPress={() => console.log('Leave club button pressed')} 
-                    />
-                </View>
+                
             </ScrollView>
         </SafeAreaView>
     );

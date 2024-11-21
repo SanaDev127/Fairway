@@ -4,7 +4,7 @@ import { globalStyles } from '@/assets/style/signinstyling';
 
 // Sample buddy data (can be replaced with dynamic data from an API or state)
 const buddiesData = [
-    { id: '1', name: 'Motheo Mekoa', image: require('@/assets/images/profile-icon.png') },
+    { id: '1', name: 'Mehluli Booi', image: require('@/assets/images/profile-icon.png') },
     { id: '2', name: 'Masana Ramaswiela', image: require('@/assets/images/profile-icon.png') },
     { id: '3', name: 'Tlotlo Matras', image: require('@/assets/images/profile-icon.png') },
 ];
