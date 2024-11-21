@@ -203,7 +203,7 @@ function createClubRedirect (){
                 </View> */}
                 <View style={styles.bottomButtonsContainer}>
                     <NavigationButtons
-                        onPress={() => router.push("../club/noticeBoard")}
+                        onPress={() => router.push("../game/Games")}
                         imageSource={require("@/assets/images/game_icon.png")}                       
                         label='Games'
                         />
