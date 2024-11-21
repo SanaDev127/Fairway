@@ -118,7 +118,7 @@ const ClubHome = () => {
                         />
 
                     <NavigationButtons
-                        onPress={() => console.log("../club/ClubScreen")}
+                        onPress={() => router.push("../club/ClubDetails")}
                         imageSource={require("@/assets/images/club_icon.png")}                       
                         label='Club'
                         />
