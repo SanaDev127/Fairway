@@ -42,6 +42,9 @@ const NoticeBoard = () => {
     
     function closePostGame (){
         setOpenGameModal(!openGameModal);
+        setSelectedStartDate(null);
+        setCourseValue('');
+        setAvailableSlot('');
     }
     function OpenDatepicker (){
         setOpen(!open);
@@ -110,8 +113,7 @@ const NoticeBoard = () => {
                                     <TextInput
                                         editable={false}
                                         style={styles.textBox}
-                                        value={`${formatDate(selectedStartDate)} to ${formatDate(
-                                        selectedEndDate )}`}
+                                        value={`${formatDate(selectedStartDate)}`}
                                     />
                                 </TouchableOpacity>
                                 <Modal
@@ -122,7 +124,6 @@ const NoticeBoard = () => {
                                         <View style={styles.modalContainerdate}>
                                             <CalendarPicker
                                                 startFromMonday={true}
-                                                allowRangeSelection={true}
                                                 minDate={minDate}
                                                 todayBackgroundColor="#f2e6ff"
                                                 selectedDayColor="#7300e6"
@@ -151,7 +152,7 @@ const NoticeBoard = () => {
 
                                 <View style={globalStyles.rowitemsContainer}>
                                     <CustomButton
-                                        onPress={() => router.push("../profile/clubDetails")}
+                                        onPress={closePostGame}
                                         title="Post"
                                         buttonStyle={{backgroundColor: "#33FF33", alignSelf: "center", marginTop: 15, marginRight: 15}}
                                     />

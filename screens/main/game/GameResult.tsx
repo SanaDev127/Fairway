@@ -16,7 +16,7 @@ const GameResult = () => {
             </View>
 
             <TouchableOpacity style={styles.button}
-            onPress={() => {}}>
+            onPress={()=> router.push("../auth/home")}>
                 <Text>Home</Text>
             </TouchableOpacity>
 

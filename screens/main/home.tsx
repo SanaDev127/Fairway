@@ -43,22 +43,23 @@ const toggleModal = () => {
 
 
  function openClubOptions (){
-    setOpen(!open);
+    setOpen(true);
     console.log("open");
 }
 
 function closeClubOptions (){
-    setOpen(!open);
+    setOpen(false);
 }
 
-function openCreateClubOptions (){
-    setOpenCreate(!openCreate);
+// function openCreateClubOptions (){
+//     setOpen(false); 
+//     setOpenCreate(true); 
 
-}
-function createClubRedirect (){
-    router.push("../club/ClubHome");
-    setOpenCreate(!openCreate);
-}
+// }
+// function createClubRedirect (){
+//     router.push("../club/ClubHome");
+//     setOpenCreate(!openCreate);
+// }
 
  //const user = auth().currentUser
     return(
@@ -79,7 +80,7 @@ function createClubRedirect (){
                             <View style={styles.centeredView}>
                                 <View style={styles.modalContainer}>
 
-                                    <CustomButton
+                                    {/* <CustomButton
                                         onPress={openCreateClubOptions}
                                         title='Create Club'
                                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15}}/>
@@ -87,7 +88,8 @@ function createClubRedirect (){
                                         <Modal
                                             animationType="slide"
                                             transparent={true}
-                                            visible={openCreate}>
+                                            visible={openCreate}
+                                            onRequestClose={() => setOpenCreate(false)}>
                                             
                                             <View style={styles.centeredView}>
                                                 <View style={styles.modalContainer2}>
@@ -104,7 +106,7 @@ function createClubRedirect (){
                                                 </View>
                                             </View>
 
-                                        </Modal>
+                                        </Modal> */}
                                     
                                     <CustomButton
                                         onPress={()=> router.push("../club/ClubHome")}

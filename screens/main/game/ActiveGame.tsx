@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ActiveGameHeader from "@/screens/main/game/components/ActiveGameHeader";
 import PlayerScoreModal from "@/screens/main/game/components/PlayerScoreModal";
+import { router } from 'expo-router';
 
 const Holes = [
     {par: 5, hole: 1, difficulty: 12},
@@ -48,7 +49,7 @@ const ActiveGame = () =>{
                 <PlayerScoreModal par={Holes[holeNumber - 1].par} playerName={"Tiger Woods"}/>
             </View>
 
-            <TouchableOpacity style={styles.endButton}>
+            <TouchableOpacity style={styles.endButton} onPress={()=> router.push("../game/GameResult")}>
                 <Text>End</Text>
             </TouchableOpacity>
         </SafeAreaView>
