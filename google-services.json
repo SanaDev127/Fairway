@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "468696509534",
+    "project_id": "fairway-app",
+    "storage_bucket": "fairway-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468696509534:android:b8b162e09855da449058cf",
+        "android_client_info": {
+          "package_name": "com.mtm.fairway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468696509534-ihu0bl2jtu6ec71o2g68kqjekjo05mgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq-sU3jkRzAcB9Iejcnt_jf3F58zY2UHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468696509534-ihu0bl2jtu6ec71o2g68kqjekjo05mgp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "468696509534-158l4anfffcaovvm3vcldh9sdoojool0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mtm.fairway"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

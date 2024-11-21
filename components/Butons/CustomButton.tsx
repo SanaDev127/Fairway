@@ -1,27 +1,45 @@
-import { View, Text, TouchableOpacity, Pressable } from 'react-native'
+import { StyleSheet, StyleProp,Text, TouchableOpacity, Pressable, ViewStyle, TextStyle } from 'react-native'
 import React from 'react'
 
 interface CustomButtonProps {
     onPress: () => void;
     title: string;
-    textStyles?: string;
-    containerStyles?: string;
+    textStyles?: TextStyle;
+    buttonStyle?: StyleProp<ViewStyle>;
 }
 
 const CustomButton = ({ 
     onPress,
-    title, textStyles="",
-    containerStyles="",
+    title, textStyles,
+    buttonStyle,
 }: CustomButtonProps) => {
   return (
     <Pressable 
-        className={`bg-lime-800 rounded-xl min-h-[62px] justify-center items-center ${containerStyles}`}
+        style={[styles.button, buttonStyle]}
         onPress={onPress}>
-            <Text className={`font-semibold text-lg ${textStyles}`}>
+            <Text 
+            style={[textStyles, textStyles]}>
                 {title}
             </Text>
     </Pressable>
   )
-}
+};
+
+const styles = StyleSheet.create({
+    button : {
+      alignItems: 'center',
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor:"#C6ECAE",
+      justifyContent: 'center',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+    },
+    btnText:{
+      fontSize: 18,
+      fontWeight: 600,
+
+    },
+})
 
 export default CustomButton
