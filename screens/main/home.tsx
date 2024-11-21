@@ -61,6 +61,11 @@ function closeClubOptions (){
 //     setOpenCreate(!openCreate);
 // }
 
+
+function goToClubRedirect(){
+    router.push("../club/ClubHome");
+    setOpen(false);
+}
  //const user = auth().currentUser
     return(
 
@@ -109,7 +114,7 @@ function closeClubOptions (){
                                         </Modal> */}
                                     
                                     <CustomButton
-                                        onPress={()=> router.push("../club/ClubHome")}
+                                        onPress={goToClubRedirect}
                                         title='Go to Club'
                                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15, marginBottom: 10}}/>
 
@@ -205,7 +210,7 @@ function closeClubOptions (){
                 </View> */}
                 <View style={styles.bottomButtonsContainer}>
                     <NavigationButtons
-                        onPress={() => router.push("../game/Games")}
+                        onPress={() => router.push("../club/noticeBoard")}
                         imageSource={require("@/assets/images/game_icon.png")}                       
                         label='Games'
                         />

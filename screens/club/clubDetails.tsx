@@ -3,12 +3,19 @@ import { globalStyles } from "@/assets/style/signinstyling";
 import { FlatListStyle } from "@/assets/style/flatListStyle";
 import { router, useRouter } from "expo-router";
 import React, { useState } from "react";
-import { View, SafeAreaView, Text, StyleSheet, TouchableOpacity, Modal, TextInput, FlatList } from "react-native";
+import { View, SafeAreaView, Text, StyleSheet, TouchableOpacity,Image, Modal, TextInput, FlatList } from "react-native";
 import CustomButton from '@/components/Butons/CustomButton';
 import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
 
 
 const ClubDetails = () => {
+
+
+    const buddiesData = [
+        { id: '1', name: 'Mehluli Booi', image: require('@/assets/images/profile-icon.png') },
+        { id: '2', name: 'Milani Figlan', image: require('@/assets/images/profile-icon.png') },
+        { id: '3', name: 'Tlotlo Matras', image: require('@/assets/images/profile-icon.png') },
+    ];
 
     const [clubData,setClubData] = useState([    
     {
@@ -27,13 +34,18 @@ const ClubDetails = () => {
 
     return(
 
-        <SafeAreaView style={{flex: 1, backgroundColor:"#e8ecf4"}}>
+        <SafeAreaView style={{flex: 1, backgroundColor:"#e8ecf4", marginTop: 30}}>
             <Text style = {globalStyles.title}>Club Info</Text>
 
 
 
             <View style = {globalStyles.container}>
                 <View>
+
+                    <Image
+                        source={require('@/assets/images/club_logo1.png')}
+                        style={{alignSelf: 'center'}}
+                        />
                         <FlatList
                             data={clubData}
                             renderItem={({ item }) => (
@@ -42,7 +54,7 @@ const ClubDetails = () => {
                                     <Text style={FlatListStyle.item}>{item.name}:</Text>
                                     <Text style={FlatListStyle.item}>Name: {item.name}</Text>
                                     <Text style={FlatListStyle.item}>Mission: {item.mission}</Text>
-                                    <Text style={FlatListStyle.item}>Fees: {item.score}</Text>
+                                    <Text style={FlatListStyle.item}>Fees: {item.Fees}</Text>
                                 </TouchableOpacity>
                             </View>
                             )}
@@ -50,6 +62,20 @@ const ClubDetails = () => {
                         />
                     <ActiveGameScorecard isVisible={isModalVisible} onClose={toggleModal}/> 
                 </View>
+
+                <FlatList
+                data={buddiesData}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => (
+                    <View style={styles.buddyContainer}>
+                        <Image 
+                            source={item.image}
+                            style={styles.profileimg}
+                        />
+                        <Text style={styles.buddyName}>{item.name}</Text>
+                    </View>
+                )}
+                />
             </View>
         </SafeAreaView>
     )
@@ -172,6 +198,18 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
       },
+      buddyContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+        padding: 10,
+        backgroundColor: '#f2f2f2',
+        borderRadius: 10,
+    },
+    buddyName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
 
 })
 
