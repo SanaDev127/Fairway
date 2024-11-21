@@ -56,4 +56,10 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
   },
+  rowitemsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+},
+
 });

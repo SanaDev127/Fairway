@@ -8,6 +8,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from "@react-native-firebase/auth";
 import { FlatListStyle } from '@/assets/style/flatListStyle';
+import HomeTabs from '@/navigatiors/HomeTabs';
+import NavigationButtons from '@/components/Butons/NavigationButtons';
+
 import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
 
 const data =[
@@ -49,6 +52,7 @@ function closeClubOptions (){
 
  //const user = auth().currentUser
     return(
+
         <SafeAreaView style={{flex: 1, backgroundColor:"#e8ecf4"}}>
             <View style={globalStyles.container}>
                 <View style ={styles.btnContainer}>
@@ -166,25 +170,34 @@ function closeClubOptions (){
                     />
                 </View> */}
                 <View style={styles.bottomButtonsContainer}>
-                    <CustomButton
-                        onPress={() => router.push("../profile/profileHome")}
-                        title='Profile'
-                        buttonStyle={styles.bottomButton}
-                    />
-                    <CustomButton
-                        onPress={() => router.push("../game/startGame")}
-                        title='Start Game'
-                        buttonStyle={styles.bottomButton}
-                    />
-                    <CustomButton
+                <NavigationButtons
+                        onPress={() => router.replace("../auth/home")}
+                        imageSource={require("@/assets/images/home_icon.png")}                       
+                        label='Home'
+                        />
+                    <NavigationButtons
                         onPress={() => router.push("../game/Games")}
-                        title='Games'
-                        buttonStyle={styles.bottomButton}
-                    />
+                        imageSource={require("@/assets/images/game_icon.png")}                       
+                        label='Games'
+                        />
+
+                    <NavigationButtons
+                        onPress={() => router.push("../game/startGame")}
+                        imageSource={require("@/assets/images/startgame_icon.png")}                       
+                        label='Start Game'
+                        />
+
+                    <NavigationButtons
+                        onPress={() => router.push("../profile/profileHome")}
+                        imageSource={require("@/assets/images/profile_icon.png")}                       
+                        label='Profile'
+                        />
+
+
                 </View>
+                {/* <HomeTabs/> */}
             </View>    
         </SafeAreaView>
-        
     );
 };
 

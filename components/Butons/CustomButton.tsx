@@ -1,10 +1,10 @@
-import { StyleSheet, StyleProp,Text, TouchableOpacity, Pressable, ViewStyle } from 'react-native'
+import { StyleSheet, StyleProp,Text, TouchableOpacity, Pressable, ViewStyle, TextStyle } from 'react-native'
 import React from 'react'
 
 interface CustomButtonProps {
     onPress: () => void;
     title: string;
-    textStyles?: StyleProp<ViewStyle>;
+    textStyles?: TextStyle;
     buttonStyle?: StyleProp<ViewStyle>;
 }
 

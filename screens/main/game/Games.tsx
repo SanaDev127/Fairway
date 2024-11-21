@@ -13,7 +13,6 @@ import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
 
 
 
-
 const Game = () => {
 
     // Code inspired by the following YouTube video:
@@ -86,6 +85,10 @@ const Game = () => {
         }
     };
 
+    const [isModalVisible, setModalVisible] = useState(false);
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
     return (
         <SafeAreaView style={{flex : 1, backgroundColor:"#e8ecf4"}}>
             <View style={globalStyles.container}>
@@ -198,7 +201,7 @@ const Game = () => {
                             )}
                             keyExtractor={(item) => item.id}
                         />
-                        
+                    <ActiveGameScorecard isVisible={isModalVisible} onClose={toggleModal}/> 
                 </View>
             </View>
 
