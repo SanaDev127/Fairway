@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from "@react-native-firebase/auth";
 import { FlatListStyle } from '@/assets/style/flatListStyle';
+import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
 
 const data =[
     {label: 'Game 1', value: '1'},
@@ -30,6 +31,12 @@ const  [continuePlayingData, setContinuePlayingData] = useState([
     { name: 'Game 1', id: '1', course: 'Centurion Country Club', date: '2024-11-21' },
 ])
 
+const [isModalVisible, setModalVisible] = useState(false);
+
+const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+    };
+
 
  function openClubOptions (){
     setOpen(!open);
@@ -46,7 +53,7 @@ function closeClubOptions (){
             <View style={globalStyles.container}>
                 <View style ={styles.btnContainer}>
                     <CustomButton
-                        onPress={openClubOptions}
+                        onPress={() => router.push("../club/ClubHome")}
                         title='Club'
                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
 
@@ -92,14 +99,14 @@ function closeClubOptions (){
                     <Text 
                         style={styles.label}>Continue Playing
                     </Text> 
-                    
+                    <ActiveGameScorecard isVisible={isModalVisible} onClose={toggleModal}/>
                     <View style={styles.dropdownContainer}>
                     <FlatList
                         data ={continuePlayingData}
                         keyExtractor={(item) => item.id}
                         renderItem={({item}) => (
                             <TouchableOpacity 
-                                onPress={() => console.log("Selected game: " + item.course)}
+                                onPress={() => toggleModal()}
                                 >    
                                 
                                 <View style={FlatListStyle.itemContainer}>
@@ -126,12 +133,14 @@ function closeClubOptions (){
                     <FlatList
                         data ={recentPlayedData}
                         keyExtractor={(item) => item.id}
-                        renderItem={({item}) => (    
+                        renderItem={({item}) => (   
+                            <TouchableOpacity onPress={() => toggleModal()}> 
                            <View style={FlatListStyle.itemContainer}>
                                 <Text style={FlatListStyle.item}>Game Name: {item.name}</Text>
                                 <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
                                 <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
                            </View>
+                            </TouchableOpacity>
                         )}
 
                         />
@@ -157,11 +166,6 @@ function closeClubOptions (){
                     />
                 </View> */}
                 <View style={styles.bottomButtonsContainer}>
-                    <CustomButton
-                        onPress={() => auth().signOut()}
-                        title='Logout'
-                        buttonStyle={styles.bottomButton}
-                    />
                     <CustomButton
                         onPress={() => router.push("../profile/profileHome")}
                         title='Profile'
@@ -247,6 +251,7 @@ const styles = StyleSheet.create({
         bottom: 10,
         width: 390,
         paddingHorizontal: 10,
+        alignSelf: "center",
     },
     bottomButton: {
         backgroundColor: "#C6ECAE",

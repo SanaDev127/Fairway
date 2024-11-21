@@ -7,6 +7,7 @@ import { View, SafeAreaView, Text, StyleSheet, TouchableOpacity, Modal, TextInpu
 import CustomButton from '@/components/Butons/CustomButton';
 import CalendarPicker from 'react-native-calendar-picker';
 import { coursesData, playerdata } from "@/constants/Data";
+import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
 
 
 
@@ -37,6 +38,12 @@ const Game = () => {
     const [open, setOpen] = useState(false); //open and close modal
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
+
+    const [isModalVisible, setModalVisible] = useState(false);
+    
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
 
     const[searchedGame, setSearchedGame] = useState('');
 
@@ -175,19 +182,21 @@ const Game = () => {
                             buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
                     </View>
                 </View>
-
+                <ActiveGameScorecard isVisible={isModalVisible} onClose={toggleModal}/>
                 <View style ={{flex: 1}}>
-                    <FlatList
-                        data ={searchData}
-                        renderItem={({item}) => (    
-                           <View style={FlatListStyle.itemContainer}>
-                            <Text style={FlatListStyle.item}>{item.name}:</Text>
-                            <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
-                            <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
-                            <Text style={FlatListStyle.item}>Score: {item.score || "User's Score"}</Text>
-                           </View>
-                        )}
-                        keyExtractor={(item) => item.id}
+                        <FlatList
+                            data={searchData}
+                            renderItem={({ item }) => (
+                            <View style={FlatListStyle.itemContainer}>
+                                <TouchableOpacity onPress={() => toggleModal()}>
+                                    <Text style={FlatListStyle.item}>{item.name}:</Text>
+                                    <Text style={FlatListStyle.item}>Course: {item.course || "Course Name"}</Text>
+                                    <Text style={FlatListStyle.item}>Date: {item.date || "Game Date"}</Text>
+                                    <Text style={FlatListStyle.item}>Score: {item.score || "User's Score"}</Text>
+                                </TouchableOpacity>
+                            </View>
+                            )}
+                            keyExtractor={(item) => item.id}
                         />
                         
                 </View>

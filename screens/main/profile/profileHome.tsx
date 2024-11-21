@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native';
 import { globalStyles } from '@/assets/style/signinstyling';
 import CustomButton from '@/components/Butons/CustomButton';
+import auth from "@react-native-firebase/auth";
 
 
 const ProfileHome = () => {
@@ -29,6 +30,13 @@ const ProfileHome = () => {
                      onPress={() => router.push("./buddies")}
                      title='Buddies'
                      buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
+
+                <CustomButton
+                     onPress={() => auth().signOut()}
+                     title='Logout'
+                     buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 25}}/>
+
+                    
 
                      
 

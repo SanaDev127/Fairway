@@ -54,6 +54,8 @@ export default function RootLayout() {
       <Stack.Screen name="auth" options={{headerShown: false}} />
       <Stack.Screen name="profile" options={{headerShown: false}} />
       <Stack.Screen name="game" options={{headerShown: false}} />
+      <Stack.Screen name="club" options={{headerShown: false}} />
+      <Stack.Screen name="league" options={{headerShown: false}} />
     </Stack>
   );
 }

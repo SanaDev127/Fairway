@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
@@ -13,9 +14,11 @@ const tableData = {
 };
 
 const LeagueTable = () => {
+    const router = useRouter();
     const [data, setData] = useState(tableData);
     return(
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1, backgroundColor:"#e8ecf4"}}>
+            <View style={{marginTop: 50, padding: 2}}>
             <Text style={styles.heading}>
                 Current League Table
             </Text>
@@ -40,9 +43,10 @@ const LeagueTable = () => {
                         </ScrollView>
                     </View>
                 </ScrollView>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => router.push("../club/ClubHome")}>
                 <Text style={[styles.headText, {justifyContent: "center"}]}>Close</Text>
             </TouchableOpacity>
+            </View>
         </SafeAreaView>
 
     );
