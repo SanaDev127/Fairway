@@ -112,7 +112,7 @@ const ClubHome = () => {
                         />
 
                     <NavigationButtons
-                        onPress={() => router.push("../game/Games")}
+                        onPress={() => router.push("../club/noticeBoard")}
                         imageSource={require("@/assets/images/game_icon.png")}                       
                         label='Games'
                         />

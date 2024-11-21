@@ -10,8 +10,8 @@ import auth from "@react-native-firebase/auth";
 import { FlatListStyle } from '@/assets/style/flatListStyle';
 import HomeTabs from '@/navigatiors/HomeTabs';
 import NavigationButtons from '@/components/Butons/NavigationButtons';
-
 import ActiveGameScorecard from "@/screens/main/game/ActiveGameScorecard";
+import { TextInput } from 'react-native-gesture-handler';
 
 const data =[
     {label: 'Game 1', value: '1'},
@@ -24,8 +24,9 @@ const Tab = createBottomTabNavigator();
 
 const Home = () => {
  const router = useRouter();
- const [value3, setValue3] = useState('');
+ const [clubName, setClubName] = useState('');
  const [open, setOpen] = useState(false); //open and close modal
+ const [openCreate, setOpenCreate] = useState(false); //open and close modal
  const  [recentPlayedData, setRecentPlayedData] = useState([
     { name: 'Game 1', id: '1', course: 'Kyalami Country Club', date: '2024-10-17' },
 ]);
@@ -50,6 +51,15 @@ function closeClubOptions (){
     setOpen(!open);
 }
 
+function openCreateClubOptions (){
+    setOpenCreate(!openCreate);
+
+}
+function createClubRedirect (){
+    router.push("../club/ClubHome");
+    setOpenCreate(!openCreate);
+}
+
  //const user = auth().currentUser
     return(
 
@@ -70,9 +80,31 @@ function closeClubOptions (){
                                 <View style={styles.modalContainer}>
 
                                     <CustomButton
-                                        onPress={()=> console.log("pressed create club")}
+                                        onPress={openCreateClubOptions}
                                         title='Create Club'
                                         buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center", marginTop: 15}}/>
+
+                                        <Modal
+                                            animationType="slide"
+                                            transparent={true}
+                                            visible={openCreate}>
+                                            
+                                            <View style={styles.centeredView}>
+                                                <View style={styles.modalContainer2}>
+                                                    <TextInput
+                                                        placeholder="Enter Club Name"
+                                                        value={clubName}
+                                                        style={styles.input}/>
+                                                    
+                                                    <TouchableOpacity
+                                                        onPress={createClubRedirect}>
+                                                        <Text>confirm</Text>
+                                                    </TouchableOpacity>
+                                                    
+                                                </View>
+                                            </View>
+
+                                        </Modal>
                                     
                                     <CustomButton
                                         onPress={()=> router.push("../club/ClubHome")}
@@ -255,6 +287,15 @@ const styles = StyleSheet.create({
         fontSize: 18,
         height: 44,
       },
+    input:{
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 0.5,
+        borderRadius: 8,
+        padding: 10,
+        margin: 10,
+        width: 200
+    },
     label:{
         fontSize: 17,
         color: "#222",
@@ -280,6 +321,22 @@ const styles = StyleSheet.create({
         marginTop: 22,
       },
     modalContainer: {
+        backgroundColor: "white",
+        margin: 20,
+        borderRadius: 20,
+        width:200,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+      },
+      modalContainer2: {
         backgroundColor: "white",
         margin: 20,
         borderRadius: 20,

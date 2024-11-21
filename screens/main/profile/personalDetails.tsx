@@ -5,12 +5,7 @@ import CustomButton from '@/components/Butons/CustomButton';
 
 const PersonalDetails = () => {
     // sample user
-    const userDetails = {
-        name: "Motheo Mekoa",
-        email: "motheomekoa@example.com",
-        phone: "066 996 7351",
-        address: "Some place in Midrand"
-    };
+    const userDetails = {name: "Motheo Mekoa", email: "motheomekoa@example.com", phone: "066 996 7351", address: "Some place in Midrand"};
 
     return (
         <SafeAreaView style={styles.container}>

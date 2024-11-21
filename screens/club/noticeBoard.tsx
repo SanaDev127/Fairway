@@ -166,7 +166,7 @@ const NoticeBoard = () => {
                     </Modal>
             </View>
             
-            <View style={globalStyles.header}>
+            <View style={[globalStyles.header, styles.header]}>
                 <Text style={globalStyles.title}>Notice Board</Text>
 
                 {/* FlatList horizontal */}
@@ -247,6 +247,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    header:{
+        marginTop: 60,
+    },
     headerButton: {
         backgroundColor: "#C6ECAE",
         alignSelf: "center",
@@ -283,8 +286,8 @@ const styles = StyleSheet.create({
     },
     btnContainer : {
         position: "absolute",
-        top: 10,
         right: 10,
+        marginTop: 50
     },
     modalContainer: {
         backgroundColor: "white",

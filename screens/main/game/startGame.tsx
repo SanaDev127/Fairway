@@ -11,14 +11,10 @@ import CalendarPicker from 'react-native-calendar-picker';
 import { useCourseApi } from '@/hooks/Api/CourseApi';
 import { useUserApi } from '@/hooks/Api/UserApi';
 import { User } from '@/hooks/Types/UserTypes';
-import { coursesData } from "@/constants/Data";
+import { coursesData, playerdata } from "@/constants/Data";
 
 
-const playerdata = [
-    { playerId: '1', displayName: 'Motheo' },
-    { playerId: '2', displayName: 'Masana' },
-    { playerId: '3', displayName: 'Tlotlo' },
-];
+
 
 const StartGame = () => {
     const router = useRouter();
@@ -72,6 +68,20 @@ const StartGame = () => {
             setSelectedEndDate(null); // Clear end date if a new start date is chosen
         }
     };
+
+ 
+        const [strokeChecked, setStrokeChecked] = useState(false);
+        const [matchChecked, setMatchChecked] = useState(false);
+      
+        const StrokeHandlePress = () => {
+          setStrokeChecked(!strokeChecked);
+          console.log(strokeChecked ? "Stroke play Unchecked" : "Stroke play Checked");
+        };
+        const MatchHandlePress = () => {
+            setMatchChecked(!matchChecked);
+            console.log(matchChecked ? "Match play Unchecked" : "Match play Checked");
+          };
+    
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#e8ecf4" }}>
@@ -163,20 +173,20 @@ const StartGame = () => {
                         {!hideContent && (
                             <View style={styles.container}>
                                 <Text>Participants:</Text>
-                                {/* <Dropdown
+                                <Dropdown
                                         style={styles.dropdown2}
-                                        data={getUserData ?? []}
-                                        labelField={"name"}
-                                        valueField={"id"}
+                                        data={playerdata ?? []}
+                                        labelField={"playerName"}
+                                        valueField={"playerId"}
                                         placeholder='Select Participant'
                                         value={participant}
                                         search
                                         searchPlaceholder='Search...'
                                         onChange={item => {
-                                            setParticipant(item.name);
-                                            console.log(item.name);
+                                            setParticipant(item.playerName);
+                                            console.log(item.playerName);
                                         }}
-                                    /> */}
+                                    />
 
                                 <View style={styles.container}>
                                     {/* <Dropdown
@@ -223,8 +233,8 @@ const StartGame = () => {
                                 </View>
                                 <View style={ styles.radioBtnContainer}>
                                     <CheckBox
-                                        checked={hideContent}
-                                        onPress={() => console.log("Stroke play Checked")}
+                                        checked={strokeChecked}
+                                        onPress={StrokeHandlePress}
                                         iconType="material-community"
                                         checkedIcon="checkbox-outline"
                                         uncheckedIcon="checkbox-blank-outline"
@@ -235,8 +245,8 @@ const StartGame = () => {
                                         />
 
                                     <CheckBox
-                                        checked={hideContent}
-                                        onPress={() => console.log("Match play Checked")}
+                                        checked={matchChecked}
+                                        onPress={MatchHandlePress}
                                         iconType="material-community"
                                         checkedIcon="checkbox-outline"
                                         uncheckedIcon="checkbox-blank-outline"
