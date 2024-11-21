@@ -38,12 +38,6 @@ const Game = () => {
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
 
-    const [isModalVisible, setModalVisible] = useState(false);
-    
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
-    };
-
     const[searchedGame, setSearchedGame] = useState('');
 
     const minDate = new Date();
