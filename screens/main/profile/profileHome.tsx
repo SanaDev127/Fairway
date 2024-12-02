@@ -9,7 +9,7 @@ import auth from "@react-native-firebase/auth";
 const ProfileHome = () => {
     const router = useRouter();
 
-    const userDetails = {name: "Motheo Mekoa", email: "motheomekoa@example.com", phone: "066 996 7351", address: "Some place in Midrand"};
+    const userDetails = {name: "Motheo Mekoa", email: "motheomekoa@example.com", phone: "066 996 7351", address: "64 Hariss Road, Midrand"};
 
     return(
         <SafeAreaView style={{flex: 1, backgroundColor:"#e8ecf4"}}>

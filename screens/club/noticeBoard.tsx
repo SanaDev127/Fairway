@@ -229,7 +229,7 @@ const NoticeBoard = () => {
           </View>
 
           <CustomButton
-            onPress={() => router.push("../game/startGame")}
+            onPress={() => router.push("../game/Games")}
             title="View All"
             textStyles={{ fontSize: 15 }}
             buttonStyle={{

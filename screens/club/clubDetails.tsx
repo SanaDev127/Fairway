@@ -21,7 +21,8 @@ const ClubDetails = () => {
     {
         id:"1",
         name: "MTM Golf Club",
-        mission: "motheomekoa@example.com",
+        mission:
+            "A passion, an obsession, a romance, a nice acquaintanceship with trees, sand and water",
         phone: "066 996 7351",
         Fees: "R150.00" }])
         
@@ -50,12 +51,10 @@ const ClubDetails = () => {
                             data={clubData}
                             renderItem={({ item }) => (
                             <View style={FlatListStyle.itemContainer}>
-                                <TouchableOpacity onPress={() => toggleModal()}>
                                     <Text style={FlatListStyle.item}>{item.name}:</Text>
                                     <Text style={FlatListStyle.item}>Name: {item.name}</Text>
                                     <Text style={FlatListStyle.item}>Mission: {item.mission}</Text>
                                     <Text style={FlatListStyle.item}>Fees: {item.Fees}</Text>
-                                </TouchableOpacity>
                             </View>
                             )}
                             keyExtractor={(item) => item.id}

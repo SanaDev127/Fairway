@@ -90,7 +90,7 @@ const Game = () => {
                     
                     <View style={styles.dropdownContainer}>
                         
-                        <Text>Date filter:</Text>
+                        <Text>Date:</Text>
 
                         <View>
 

@@ -160,7 +160,7 @@ const StartGame = () => {
                                         
                                         <CustomButton 
                                             onPress={CloseDatePicker}
-                                            title='Open'
+                                            title='Select'
                                             buttonStyle={{backgroundColor: "#C6ECAE", alignSelf: "center"}}/>
 
                                     </View>
