@@ -1,50 +1,22 @@
-# Welcome to your Expo app 👋
+# Fairway
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Purpose
+This application has 3 main purposes
+- Digital Golf Scorecard: Players can enter their scores while on a golf course
+- Player record management: Players can convieniently access their past scores from games
+- Golf Club Administration: Players can create "Golf Clubs" and invite their friends to be members. Through this they can more effectively conduct club operations like tracking club games, tracking member scores, hosting leagues, and keeping track of club finances.
 
-## Get started
+## Functionality
 
-1. Install dependencies
+### Scorekeeping
+- After entering details about the game being played, like the course it is being played at and any other participants, the user can enter their score as they go through each hole on the course.
 
-   ```bash
-   npm install
-   ```
+ ![Fairway game details resized](https://github.com/user-attachments/assets/144b918d-c9a6-4e7f-b0cf-5d90e4b59385) &nbsp; ![Fairway Scorekeeping resized](https://github.com/user-attachments/assets/6f2d57ca-2ac7-4766-b3c0-568c5c82bf4f)
 
-2. Start the app
+### Score Retrieval
+- The home screen has 2 main components. The "Continue Playing" component will return the user to a game session which hasn't been completed. The "Recently Played" component will show the user the scores of games played in the past
 
-   ```bash
-    npx expo start
-   ```
+![Fairway Home Screen resized](https://github.com/user-attachments/assets/4ed0a2eb-3236-4be9-9d6f-c82c9819ea68)  &nbsp;  ![Fairway Scorecard resized](https://github.com/user-attachments/assets/5842029f-c761-4e98-be2c-f225be7ef492)
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
